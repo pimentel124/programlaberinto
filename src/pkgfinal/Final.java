@@ -68,7 +68,7 @@ public class Final extends JFrame {   //se puede quitar el public
     JMenuItem exitlab = new JMenuItem("Salir del laberinto");
 
     
-    
+    //
     
     
     class selecclab implements ActionListener{
