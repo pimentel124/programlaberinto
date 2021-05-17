@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkgfinal;
 
 import java.awt.Color;
@@ -25,12 +20,12 @@ public class Final extends JFrame {   //se puede quitar el public
     private Casillas [][] casillas;
     
     public void inicio(){
-        
+        atributosventana();
         importlaberinto();
         
         
-        atributosventana();
-        this.setSize(500,500);
+        
+        
         
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
@@ -51,12 +46,12 @@ public class Final extends JFrame {   //se puede quitar el public
         columnas = lab.getColumnas();
         casillas=new Casillas[filas][columnas];
         
-        
+        this.add(lab);
     }
     
     private void atributosventana(){
     
-        
+    this.setSize(500,600);    
     this.setTitle("Proyecto final laberinto");
         
     
