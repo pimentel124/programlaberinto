@@ -14,8 +14,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Final extends JFrame {   //se puede quitar el public
   
-    private static final Color VERDE = Color.GREEN;    
-    private static final Color NEGRO = Color.BLACK;
+    
     private int ubiX, ubiY;
           
     private static int filas;
@@ -24,8 +23,9 @@ public class Final extends JFrame {   //se puede quitar el public
     private Casillas [][] casillas;
     
     public void inicio(){
-        atributosventana();
         importlaberinto();
+        atributosventana();
+        
         
         
         
@@ -73,7 +73,8 @@ public class Final extends JFrame {   //se puede quitar el public
     addKeyListener(new KeyListener() {
             @Override
             public void keyPressed(KeyEvent ke) {
-                System.out.println("w");
+                try {
+                  //System.out.println("w");
                 boolean cambio = false;
                 for (int i = 0; i < filas; i++) {
                     for (int j = 0; j < columnas; j++) {
@@ -81,6 +82,7 @@ public class Final extends JFrame {   //se puede quitar el public
                             switch (ke.getKeyCode()) {
                                 case KeyEvent.VK_W:
                                                         //KeyEvent.VK_UP 
+                                    System.out.println("w");
                                     if (i != 0) {
                                         if (laberinto.grid[i][j].limites[0] == 0) {
                                             laberinto.grid[i - 1][j].setOcupada();   //ocupada means occupied
@@ -95,6 +97,7 @@ public class Final extends JFrame {   //se puede quitar el public
                                     
                                 case KeyEvent.VK_UP:
                                                         //KeyEvent.VK_UP 
+                                    System.out.println("arriba");
                                     if (i != 0) {
                                         if (laberinto.grid[i][j].limites[0] == 0) {
                                             laberinto.grid[i - 1][j].setOcupada();   //ocupada means occupied
@@ -108,6 +111,7 @@ public class Final extends JFrame {   //se puede quitar el public
                                     break;
  
                                 case KeyEvent.VK_D:
+                                    System.out.println("d");
                                     if (j != columnas-1) {
                                         if (laberinto.grid[i][j].limites[1] == 0) {
                                             laberinto.grid[i][j + 1].setOcupada();
@@ -121,6 +125,7 @@ public class Final extends JFrame {   //se puede quitar el public
                                     break;
                                     
                                 case KeyEvent.VK_RIGHT:
+                                    System.out.println("derecha");
                                     if (j != columnas-1) {
                                         if (laberinto.grid[i][j].limites[1] == 0) {
                                             laberinto.grid[i][j + 1].setOcupada();
@@ -135,6 +140,7 @@ public class Final extends JFrame {   //se puede quitar el public
  
  
                                 case KeyEvent.VK_S:
+                                    System.out.println("s");
                                     if (i != filas-1) {
                                         if (laberinto.grid[i][j].limites[2] == 0) {
                                             laberinto.grid[i + 1][j].setOcupada();
@@ -148,6 +154,7 @@ public class Final extends JFrame {   //se puede quitar el public
                                     break;
                                     
                                 case KeyEvent.VK_DOWN:
+                                    System.out.println("abajo");
                                     if (i != filas-1) {
                                         if (laberinto.grid[i][j].limites[2] == 0) {
                                             laberinto.grid[i + 1][j].setOcupada();
@@ -161,6 +168,7 @@ public class Final extends JFrame {   //se puede quitar el public
                                     break;
  
                                 case KeyEvent.VK_A:
+                                    System.out.println("A");
                                     if (j != 0) {
                                         if (laberinto.grid[i][j].limites[3] == 0) {
                                             laberinto.grid[i][j - 1].setOcupada();
@@ -173,6 +181,7 @@ public class Final extends JFrame {   //se puede quitar el public
                                     cambio = true;
                                     break;
                                 case KeyEvent.VK_LEFT:
+                                    System.out.println("izquierda");
                                     if (j != 0) {
                                         if (laberinto.grid[i][j].limites[3] == 0) {
                                             laberinto.grid[i][j - 1].setOcupada();
@@ -196,7 +205,11 @@ public class Final extends JFrame {   //se puede quitar el public
                 }
  
                 
-                repaint();
+                repaint();  
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                
             }
  
             @Override
@@ -223,7 +236,8 @@ public class Final extends JFrame {   //se puede quitar el public
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-               
+               inicio();
+                System.out.println("Reinlab");
             }
         
         

@@ -45,8 +45,6 @@ public class Casillas {
     
     
     boolean info() {
-        
-        
         return ocupada;
         
     }
