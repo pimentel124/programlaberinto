@@ -17,7 +17,7 @@ public class laberinto extends JPanel {
     private int filend;
     private int colend;
     
-    public static int[] limites;
+    public int[] limites;
     public static Casillas grid[][];
     
     

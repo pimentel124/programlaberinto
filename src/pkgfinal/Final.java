@@ -16,6 +16,8 @@ public class Final extends JFrame {   //se puede quitar el public
   
     private static final Color VERDE = Color.GREEN;    
     private static final Color NEGRO = Color.BLACK;
+    private int ubiX, ubiY;
+          
     private static int filas;
     private static int columnas;
     private String fichero = "maze1.txt";
@@ -77,13 +79,28 @@ public class Final extends JFrame {   //se puede quitar el public
                     for (int j = 0; j < columnas; j++) {
                         if (casillas[i][j].info()) {
                             switch (ke.getKeyCode()) {
-                                case KeyEvent.VK_W: 
+                                case KeyEvent.VK_W:
+                                                        //KeyEvent.VK_UP 
                                     if (i != 0) {
                                         if (laberinto.grid[i][j].limites[0] == 0) {
                                             laberinto.grid[i - 1][j].setOcupada();   //ocupada means occupied
                                             laberinto.grid[i][j].setLibre();             //libre means free
-                                            Laberinto.setnFilas(i); 
-                                            Laberinto.setnColumnas(j);
+//                                            Laberinto.setnFilas(i); 
+//                                            Laberinto.setnColumnas(j);
+                                             
+                                        }
+                                    }
+                                    cambio = true;
+                                    break;
+                                    
+                                case KeyEvent.VK_UP:
+                                                        //KeyEvent.VK_UP 
+                                    if (i != 0) {
+                                        if (laberinto.grid[i][j].limites[0] == 0) {
+                                            laberinto.grid[i - 1][j].setOcupada();   //ocupada means occupied
+                                            laberinto.grid[i][j].setLibre();             //libre means free
+//                                            Laberinto.setnFilas(i); 
+//                                            Laberinto.setnColumnas(j);
                                              
                                         }
                                     }
@@ -91,25 +108,52 @@ public class Final extends JFrame {   //se puede quitar el public
                                     break;
  
                                 case KeyEvent.VK_D:
-                                    if (j != Mapa.getNumColumnas()-1) {
-                                        if (Mapa.tablero[i][j].paredes[1] == '0') {
-                                            Mapa.tablero[i][j + 1].setOcupada();
-                                            Mapa.tablero[i][j].setLibre();
-                                            Laberinto.setnFilas(i);
-                                            Laberinto.setnColumnas(j);
+                                    if (j != columnas-1) {
+                                        if (laberinto.grid[i][j].limites[1] == 0) {
+                                            laberinto.grid[i][j + 1].setOcupada();
+                                            laberinto.grid[i][j].setLibre();
+//                                            Laberinto.setnFilas(i);
+//                                            Laberinto.setnColumnas(j);
+ 
+                                        }
+                                    }
+                                    cambio = true;
+                                    break;
+                                    
+                                case KeyEvent.VK_RIGHT:
+                                    if (j != columnas-1) {
+                                        if (laberinto.grid[i][j].limites[1] == 0) {
+                                            laberinto.grid[i][j + 1].setOcupada();
+                                            laberinto.grid[i][j].setLibre();
+//                                            Laberinto.setnFilas(i);
+//                                            Laberinto.setnColumnas(j);
  
                                         }
                                     }
                                     cambio = true;
                                     break;
  
+ 
                                 case KeyEvent.VK_S:
-                                    if (i != Mapa.getNumFilas()-1) {
-                                        if (Mapa.tablero[i][j].paredes[2] == '0') {
-                                            Mapa.tablero[i + 1][j].setOcupada();
-                                            Mapa.tablero[i][j].setLibre();
-                                            Laberinto.setnFilas(i);
-                                            Laberinto.setnColumnas(j);
+                                    if (i != filas-1) {
+                                        if (laberinto.grid[i][j].limites[2] == 0) {
+                                            laberinto.grid[i + 1][j].setOcupada();
+                                            laberinto.grid[i][j].setLibre();
+//                                            Laberinto.setnFilas(i);
+//                                            Laberinto.setnColumnas(j);
+ 
+                                        }
+                                    }
+                                    cambio = true;
+                                    break;
+                                    
+                                case KeyEvent.VK_DOWN:
+                                    if (i != filas-1) {
+                                        if (laberinto.grid[i][j].limites[2] == 0) {
+                                            laberinto.grid[i + 1][j].setOcupada();
+                                            laberinto.grid[i][j].setLibre();
+//                                            Laberinto.setnFilas(i);
+//                                            Laberinto.setnColumnas(j);
  
                                         }
                                     }
@@ -118,11 +162,23 @@ public class Final extends JFrame {   //se puede quitar el public
  
                                 case KeyEvent.VK_A:
                                     if (j != 0) {
-                                        if (Mapa.tablero[i][j].paredes[3] == '0') {
-                                            Mapa.tablero[i][j - 1].setOcupada();
-                                            Mapa.tablero[i][j].setLibre();
-                                            Laberinto.setnFilas(i);
-                                            Laberinto.setnColumnas(j);
+                                        if (laberinto.grid[i][j].limites[3] == 0) {
+                                            laberinto.grid[i][j - 1].setOcupada();
+                                            laberinto.grid[i][j].setLibre();
+//                                            Laberinto.setnFilas(i);
+//                                            Laberinto.setnColumnas(j);
+ 
+                                        }
+                                    }
+                                    cambio = true;
+                                    break;
+                                case KeyEvent.VK_LEFT:
+                                    if (j != 0) {
+                                        if (laberinto.grid[i][j].limites[3] == 0) {
+                                            laberinto.grid[i][j - 1].setOcupada();
+                                            laberinto.grid[i][j].setLibre();
+//                                            Laberinto.setnFilas(i);
+//                                            Laberinto.setnColumnas(j);
  
                                         }
                                     }
