@@ -15,7 +15,7 @@ public class Casillas {
     private int columna;
     private boolean ocupada;
     private boolean norte, sur, este, oeste = false;
-    private int[] limites;
+    public int[] limites;
     private Rectangle2D.Float cuadrado;
     private Puntero punt;
     
@@ -39,18 +39,23 @@ public class Casillas {
             if (bordes[3] == 1) oeste = true;
         }
     
-    void setLibe() {
+    void setLibre() {
         ocupada=false;
     }
     
     
     boolean info() {
+        
+        
         return ocupada;
+        
     }
     
     public void setOcupada() {
         ocupada=true;
     }
+    
+    
     
 //    public boolean getNorte(){
 //        return norte;

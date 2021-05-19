@@ -3,6 +3,8 @@ package pkgfinal;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.JFrame;
@@ -64,6 +66,89 @@ public class Final extends JFrame {   //se puede quitar el public
 
     
     //
+    
+    
+    addKeyListener(new KeyListener() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                System.out.println("w");
+                boolean cambio = false;
+                for (int i = 0; i < filas; i++) {
+                    for (int j = 0; j < columnas; j++) {
+                        if (casillas[i][j].info()) {
+                            switch (ke.getKeyCode()) {
+                                case KeyEvent.VK_W: 
+                                    if (i != 0) {
+                                        if (laberinto.grid[i][j].limites[0] == 0) {
+                                            laberinto.grid[i - 1][j].setOcupada();   //ocupada means occupied
+                                            laberinto.grid[i][j].setLibre();             //libre means free
+                                            Laberinto.setnFilas(i); 
+                                            Laberinto.setnColumnas(j);
+                                             
+                                        }
+                                    }
+                                    cambio = true;
+                                    break;
+ 
+                                case KeyEvent.VK_D:
+                                    if (j != Mapa.getNumColumnas()-1) {
+                                        if (Mapa.tablero[i][j].paredes[1] == '0') {
+                                            Mapa.tablero[i][j + 1].setOcupada();
+                                            Mapa.tablero[i][j].setLibre();
+                                            Laberinto.setnFilas(i);
+                                            Laberinto.setnColumnas(j);
+ 
+                                        }
+                                    }
+                                    cambio = true;
+                                    break;
+ 
+                                case KeyEvent.VK_S:
+                                    if (i != Mapa.getNumFilas()-1) {
+                                        if (Mapa.tablero[i][j].paredes[2] == '0') {
+                                            Mapa.tablero[i + 1][j].setOcupada();
+                                            Mapa.tablero[i][j].setLibre();
+                                            Laberinto.setnFilas(i);
+                                            Laberinto.setnColumnas(j);
+ 
+                                        }
+                                    }
+                                    cambio = true;
+                                    break;
+ 
+                                case KeyEvent.VK_A:
+                                    if (j != 0) {
+                                        if (Mapa.tablero[i][j].paredes[3] == '0') {
+                                            Mapa.tablero[i][j - 1].setOcupada();
+                                            Mapa.tablero[i][j].setLibre();
+                                            Laberinto.setnFilas(i);
+                                            Laberinto.setnColumnas(j);
+ 
+                                        }
+                                    }
+                                    cambio = true;
+                                    break;
+ 
+                            }
+                            break;
+ 
+                        }
+                    }
+                    if (cambio) {
+                        break;
+                    }
+                }
+ 
+                
+                repaint();
+            }
+ 
+            @Override
+            public void keyReleased(KeyEvent ke) {}
+ 
+            @Override
+            public void keyTyped(KeyEvent ke) {}
+        });
     
     
     class selecclab implements ActionListener{

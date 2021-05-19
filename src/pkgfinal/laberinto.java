@@ -16,8 +16,10 @@ public class laberinto extends JPanel {
     private int colsalida;
     private int filend;
     private int colend;
-    public static Casillas[][] grid;
-    public int[] limites;
+    
+    public static int[] limites;
+    public static Casillas grid[][];
+    
     
     
     public laberinto(String fichero){
