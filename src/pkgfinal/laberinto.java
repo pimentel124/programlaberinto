@@ -55,6 +55,8 @@ public class laberinto extends JPanel {
          
          for (int i = 0; i<filas; i++){
              
+             contX = 0;
+             
              for (int j = 0; j<columnas; j++){
                  
                 Rectangle2D.Float recprov= new Rectangle2D.Float(contX, contY, dimensionlado, dimensionlado);
@@ -67,6 +69,8 @@ public class laberinto extends JPanel {
                     char traspaso = (char) tmp;
                     
                     limites[cont]=Character.getNumericValue(traspaso);
+                    
+                    //System.out.println(limites[cont]);
                     
                 }
                 grid[i][j]=new Casillas(recprov, limites, contX, contY);
@@ -134,7 +138,7 @@ public class laberinto extends JPanel {
                 
             }
             g.setColor(Color.yellow);
-        g.fillRect((dimensionlado*colsalida)-dimensionlado, dimensionlado*filsalida, dimensionlado, dimensionlado);
+        //g.fillRect((dimensionlado*colsalida)-dimensionlado, dimensionlado*filsalida, dimensionlado, dimensionlado);
             
             
             
@@ -143,9 +147,9 @@ public class laberinto extends JPanel {
     }
     
     
-    public Dimension getPreferredsize(){
-        return new Dimension(dimensionlado*columnas, dimensionlado*filas);
-    }
+//    public Dimension getPreferredsize(){
+//        return new Dimension(dimensionlado*columnas, dimensionlado*filas);
+//    }
         
     
     

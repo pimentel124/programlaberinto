@@ -57,8 +57,8 @@ public class Final extends JFrame {   //se puede quitar el public
     
     private void atributosventana(){
     
-    this.setSize(407,652);    
-    this.setResizable(false);
+    this.setSize(600,800);    
+    this.setResizable(true);
     this.setTitle("Proyecto final laberinto");
     setDefaultCloseOperation(EXIT_ON_CLOSE);    
     
