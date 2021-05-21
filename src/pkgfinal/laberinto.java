@@ -1,5 +1,8 @@
 package pkgfinal;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -9,7 +12,7 @@ import javax.swing.JPanel;
 
 
 public class laberinto extends JPanel {
-    private final int dimensionlado = 48;
+    private static final int dimensionlado = 40;
     private int filas;
     private int columnas;
     private int filsalida;
@@ -114,6 +117,35 @@ public class laberinto extends JPanel {
             e2.printStackTrace();
         }
     }
+    
+    
+    @Override
+    public void paintComponent(Graphics g){
+ 
+        try {
+            for (int i = 0; i < filas; i++) {
+                
+                for (int j = 0; j < columnas; j++) {
+                    
+                    
+                    grid[i][j].paintComponent(g);
+                    
+                }
+                
+            }
+            g.setColor(Color.yellow);
+        g.fillRect((dimensionlado*colsalida)-dimensionlado, dimensionlado*filsalida, dimensionlado, dimensionlado);
+            
+            
+            
+        } catch (Exception e) {
+        }
+    }
+    
+    
+    public Dimension getPreferredsize(){
+        return new Dimension(dimensionlado*columnas, dimensionlado*filas);
+    }
         
     
     
@@ -137,7 +169,7 @@ public class laberinto extends JPanel {
     }
     
     
-    public int getDimension(){
+    public static int getDimension(){
         return dimensionlado;
     }
     

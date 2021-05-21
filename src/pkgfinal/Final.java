@@ -37,7 +37,7 @@ public class Final extends JFrame {   //se puede quitar el public
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
               
         
-        setVisible(true);
+        
         
     }
     
@@ -57,9 +57,10 @@ public class Final extends JFrame {   //se puede quitar el public
     
     private void atributosventana(){
     
-    this.setSize(500,600);    
+    this.setSize(407,652);    
+    this.setResizable(false);
     this.setTitle("Proyecto final laberinto");
-        
+    setDefaultCloseOperation(EXIT_ON_CLOSE);    
     
     JMenuBar barramenu = new JMenuBar();
     this.setJMenuBar(barramenu);
@@ -268,6 +269,11 @@ public class Final extends JFrame {   //se puede quitar el public
     menlaber.add(selecclab);
     menlaber.add(reinlab);
     menlaber.add(exitlab);
+    
+    repaint();
+    
+    
+    this.setVisible(true);
     }
     
        

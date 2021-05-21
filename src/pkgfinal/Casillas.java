@@ -5,19 +5,23 @@
  */
 package pkgfinal;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
 
 
 public class Casillas {
     
-    private int fila;
-    private int columna;
+    private int X;
+    private int Y;
     private boolean ocupada;
     private boolean norte, sur, este, oeste = false;
     public int[] limites;
     private Rectangle2D.Float cuadrado;
     private Puntero punt;
+    private int anchuralinea = 4;
     
     
     
@@ -28,8 +32,8 @@ public class Casillas {
     }
         public Casillas(Rectangle2D.Float c, int[] lim, int X, int Y) {
         limites = lim;
-        fila = X;
-        columna = Y;
+        this.X = X;
+        this.Y = Y;
         cuadrado = c;
     }
         public Casillas(int[] bordes){
@@ -68,5 +72,55 @@ public class Casillas {
     public int[] getLimites() {
         return limites;
     }
+ 
+    
+   public void paintComponent(Graphics g) throws Exception {
+       
+       Graphics2D aux = (Graphics2D) g;
+       
+       aux.setColor(Color.GREEN);
+       aux.fill(cuadrado);
+       
+       
+       if(limites[0] == 1){
+           Rectangle2D.Float pared= new Rectangle2D.Float(X,Y-2,laberinto.getDimension(),anchuralinea); 
+           aux.setColor(Color.BLACK);
+           aux.fill(pared);
+           
+           
+       }
+       if(limites[1] == 1){
+           Rectangle2D.Float pared= new Rectangle2D.Float(X+laberinto.getDimension()-2,Y,anchuralinea,laberinto.getDimension()); 
+           aux.setColor(Color.BLACK);
+           aux.fill(pared);
+           
+           
+       }
+       if(limites[2] == 1){
+           Rectangle2D.Float pared= new Rectangle2D.Float(X,Y+laberinto.getDimension()-2,laberinto.getDimension(),anchuralinea); 
+           aux.setColor(Color.BLACK);
+           aux.fill(pared);
+           
+           
+       }
+       if(limites[3] == 1){
+           Rectangle2D.Float pared= new Rectangle2D.Float(X-2,Y,anchuralinea,laberinto.getDimension()); 
+           aux.setColor(Color.BLACK);
+           aux.fill(pared);
+           
+           
+       }
+       
+       
+       
+       
+       
+   }
+    
+    
+    
+    
+    
+    
     
 }
