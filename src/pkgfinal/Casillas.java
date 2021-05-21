@@ -57,11 +57,7 @@ public class Casillas {
         ocupada=true;
     }
     
-    
-    
-//    public boolean getNorte(){
-//        return norte;
-//    }
+   
     
     public void setFicha(Puntero p) {
         System.out.println("setficha");
@@ -84,12 +80,14 @@ public class Casillas {
        
        
        if(limites[0] == 1){   //NORTE
-           Rectangle2D.Float pared= new Rectangle2D.Float(X,Y+2,laberinto.getDimension(),anchuralinea); 
+           Rectangle2D.Float pared= new Rectangle2D.Float(X,Y+2,laberinto.getDimension(),anchuralinea);
+           
            aux.setColor(Color.BLACK);
            aux.fill(pared);
            System.out.println("norte");
            
        }
+       /*
        if(limites[1] == 1){  //ESTE //DERECHA
            Rectangle2D.Float pared= new Rectangle2D.Float(X+laberinto.getDimension()-2,Y,anchuralinea,laberinto.getDimension()); 
            aux.setColor(Color.GREEN);
@@ -98,15 +96,22 @@ public class Casillas {
            
            
        }
+       
+       */
+       
        if(limites[2] == 1){   //SUR   
-           //aux.setColor(Color.RED);
-           //aux.drawLine(X, Y+laberinto.getDimension(), X+laberinto.getDimension(), Y+laberinto.getDimension());
+//           aux.setColor(Color.RED);
+//           aux.drawLine(X, Y+laberinto.getDimension(), X+laberinto.getDimension(), Y+laberinto.getDimension());
+//           aux.setColor(Color.BLACK);
+//           aux.drawLine(X, Y, X+laberinto.getDimension(), Y+laberinto.getDimension());
            Rectangle2D.Float pared= new Rectangle2D.Float(X,Y+laberinto.getDimension()-2,laberinto.getDimension(),anchuralinea); 
            aux.setColor(Color.RED);
            aux.fill(pared);
            System.out.println("sur");
            
        }
+       
+       
        if(limites[3] == 1){   //OESTE   //IZQUIERDA
            Rectangle2D.Float pared= new Rectangle2D.Float(X,Y,anchuralinea,laberinto.getDimension()); 
            aux.setColor(Color.blue);
