@@ -34,8 +34,8 @@ public class Casillas {
     }
         public Casillas(int[] bordes){
             if (bordes[0] == 1) norte = true;
-            if (bordes[1] == 1) sur = true;
-            if (bordes[2] == 1) este = true;
+            if (bordes[1] == 1) este = true;
+            if (bordes[2] == 1) sur = true;
             if (bordes[3] == 1) oeste = true;
         }
     

@@ -17,8 +17,8 @@ public class laberinto extends JPanel {
     private int filend;
     private int colend;
     
-    public int[] limites;
-    public static Casillas grid[][];
+ 
+    public Casillas grid[][];
     
     
     
@@ -34,6 +34,7 @@ public class laberinto extends JPanel {
         String linea = "";
         int contX = 0;
         int contY = 0;
+        int[] limites = new int[4];
         
         try{
             FileReader fr = new FileReader(fichero);
@@ -54,7 +55,7 @@ public class laberinto extends JPanel {
              for (int j = 0; j<columnas; j++){
                  
                 Rectangle2D.Float recprov= new Rectangle2D.Float(contX, contY, dimensionlado, dimensionlado);
-                limites = new int[4];
+                
                 
                 
                 for (int cont = 0; cont<4; cont++){
@@ -160,5 +161,12 @@ public class laberinto extends JPanel {
    
     public int getColend(){
         return colend;
+    }
+    
+    
+    public int[] Limites(int i, int j){
+        
+        
+        return grid[i][j].getLimites();
     }
 }
