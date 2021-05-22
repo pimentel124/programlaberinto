@@ -71,19 +71,18 @@ public class laberinto extends JPanel {
                     
                     limites[cont]=traspaso;
                     
-                    System.out.println(limites[cont]);
-                    
+                   
                 }
                 grid[i][j]=new Casillas(recprov, limites, contX, contY);
                 contX = contX + dimensionlado;
              }
-             //br.readLine();
+             
             br.readLine();
             contY = contY + dimensionlado;
              
          }
          
-//         linea = br.readLine();
+
          
          filsalida = aInt(linea = br.readLine());
             System.out.println("filas "+filsalida);
