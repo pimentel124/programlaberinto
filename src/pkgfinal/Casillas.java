@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkgfinal;
 
 import java.awt.Color;
@@ -87,7 +82,7 @@ public class Casillas {
            System.out.println("norte");
            
        }
-       /*
+       
        if(limites[1] == 1){  //ESTE //DERECHA
            Rectangle2D.Float pared= new Rectangle2D.Float(X+laberinto.getDimension()-2,Y,anchuralinea,laberinto.getDimension()); 
            aux.setColor(Color.GREEN);
@@ -97,7 +92,7 @@ public class Casillas {
            
        }
        
-       */
+      
        
        if(limites[2] == 1){   //SUR   
 //           aux.setColor(Color.RED);
@@ -119,6 +114,9 @@ public class Casillas {
            System.out.println("izquierda");
            
        }
+       if (this.ocupada) {
+            this.punt.PaintComponent(g, this.cuadrado.x, this.cuadrado.y);
+        }
        
        
        

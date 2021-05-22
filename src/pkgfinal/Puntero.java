@@ -5,8 +5,10 @@
  */
 package pkgfinal;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
@@ -15,7 +17,7 @@ import javax.imageio.ImageIO;
  */
 public class Puntero {
  
-    //public static final String imagen = "circulo.png";
+    private final String imagen = "circulo.png";
     private BufferedImage png;
     
     
@@ -24,11 +26,18 @@ public class Puntero {
         try{
             png = ImageIO.read(new File(imagen));
             
-        }catch(Exception e){
+        }catch(IOException e){
             
         }
         
         
+    }
+    
+    
+  
+
+    void PaintComponent(Graphics g, float x, float y) {
+        g.drawImage(png, (int)x+10, (int)y+10, null);
     }
     
     
