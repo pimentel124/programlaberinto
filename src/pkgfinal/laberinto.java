@@ -15,7 +15,7 @@ public class laberinto extends JPanel {
     private static final int dimensionlado = 40;
     private int filas;
     private int columnas;
-    private int filsalida;
+    private int filsalida; //no es la fila se la salida
     private int colsalida;
     private int filend;
     private int colend;
@@ -28,6 +28,7 @@ public class laberinto extends JPanel {
     public laberinto(String fichero){
         
         lector(fichero);
+        
         
     }
     
@@ -85,9 +86,9 @@ public class laberinto extends JPanel {
 //         linea = br.readLine();
          
          filsalida = aInt(linea = br.readLine());
-            System.out.println("filasalida "+filsalida);
+            System.out.println("filas "+filsalida);
          colsalida = aInt(linea = br.readLine());
-            System.out.println("colsalida "+colsalida);
+            System.out.println("columnas "+colsalida);
          
          
          
@@ -103,8 +104,8 @@ public class laberinto extends JPanel {
          br.close();
          fr.close();
          
+         //grid[filsalida][colsalida].setOcupada();
          
-            
             
          
             
@@ -127,6 +128,7 @@ public class laberinto extends JPanel {
     public void paintComponent(Graphics g){
  
         try {
+           
             for (int i = 0; i < filas; i++) {
                 
                 for (int j = 0; j < columnas; j++) {
@@ -176,15 +178,7 @@ public class laberinto extends JPanel {
     public static int getDimension(){
         return dimensionlado;
     }
-    
-    public int getFilsalida(){
-        return filsalida;
-    }
-    
-    public int getColsalida(){
-        return colsalida;
-    }
-    
+   
     public int getFilas(){
         return filas;
     }
