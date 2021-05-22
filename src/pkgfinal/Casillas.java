@@ -67,25 +67,26 @@ public class Casillas {
     
    public void paintComponent(Graphics g) throws Exception {
        
-       Graphics2D aux;
-        aux = (Graphics2D) g;
+       //System.out.println(limites);
+       
+       Graphics2D aux = (Graphics2D) g;
        
        aux.setColor(Color.WHITE);
        aux.fill(cuadrado);
        
        
        if(limites[0] == '1'){   //NORTE
-           Rectangle2D.Float pared= new Rectangle2D.Float(X,Y-2,laberinto.getDimension(),anchuralinea);
+           Rectangle2D.Float pared= new Rectangle2D.Float(X,Y,laberinto.getDimension(),anchuralinea);
            
            aux.setColor(Color.BLACK);
            aux.fill(pared);
-           System.out.println("norte");
+           //System.out.println("norte");
            
        }
        
        if(limites[1] == '1'){  //ESTE //DERECHA
-           Rectangle2D.Float pared= new Rectangle2D.Float(X+laberinto.getDimension()-2,Y,anchuralinea,laberinto.getDimension()); 
-           aux.setColor(Color.GREEN);
+           Rectangle2D.Float pared= new Rectangle2D.Float(X+laberinto.getDimension(),Y,anchuralinea,laberinto.getDimension()); 
+           aux.setColor(Color.BLACK);
            aux.fill(pared);
            //System.out.println("derecha");
            
@@ -99,8 +100,8 @@ public class Casillas {
 //           aux.drawLine(X, Y+laberinto.getDimension(), X+laberinto.getDimension(), Y+laberinto.getDimension());
 //           aux.setColor(Color.BLACK);
 //           aux.drawLine(X, Y, X+laberinto.getDimension(), Y+laberinto.getDimension());
-           Rectangle2D.Float pared= new Rectangle2D.Float(X,Y+laberinto.getDimension()-2,laberinto.getDimension(),anchuralinea); 
-           aux.setColor(Color.RED);
+           Rectangle2D.Float pared= new Rectangle2D.Float(X,Y+laberinto.getDimension(),laberinto.getDimension(),anchuralinea); 
+           aux.setColor(Color.BLACK);
            aux.fill(pared);
            //System.out.println("sur");
            
@@ -109,9 +110,9 @@ public class Casillas {
        
        if(limites[3] == '1'){   //OESTE   //IZQUIERDA
            Rectangle2D.Float pared= new Rectangle2D.Float(X,Y,anchuralinea,laberinto.getDimension()); 
-           aux.setColor(Color.BLUE);
+           aux.setColor(Color.BLACK);
            aux.fill(pared);
-           System.out.println("izquierda");
+           //System.out.println("izquierda");
            
        }
        if (this.ocupada) {

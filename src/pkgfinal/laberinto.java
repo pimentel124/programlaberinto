@@ -60,7 +60,7 @@ public class laberinto extends JPanel {
              for (int j = 0; j<columnas; j++){
                  
                 Rectangle2D.Float recprov= new Rectangle2D.Float(contX, contY, dimensionlado, dimensionlado);
-                
+                limites=new char[4];
                 
                 
                 for (int cont = 0; cont<4; cont++){
