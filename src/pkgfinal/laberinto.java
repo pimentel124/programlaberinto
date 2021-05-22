@@ -37,7 +37,7 @@ public class laberinto extends JPanel {
         String linea = "";
         int contX = 0;
         int contY = 0;
-        int[] limites = new int[4];
+        char[] limites = {'0','0','0','0'};
         
         try{
             FileReader fr = new FileReader(fichero);
@@ -68,9 +68,9 @@ public class laberinto extends JPanel {
                     tmp = br.read();
                     char traspaso = (char) tmp;
                     
-                    limites[cont]=Character.getNumericValue(traspaso);
+                    limites[cont]=traspaso;
                     
-                    //System.out.println(limites[cont]);
+                    System.out.println(limites[cont]);
                     
                 }
                 grid[i][j]=new Casillas(recprov, limites, contX, contY);
@@ -200,7 +200,7 @@ public class laberinto extends JPanel {
     }
     
     
-    public int[] Limites(int i, int j){
+    public char[] Limites(int i, int j){
         
         
         return grid[i][j].getLimites();

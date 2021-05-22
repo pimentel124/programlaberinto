@@ -13,7 +13,7 @@ public class Casillas {
     private int Y;
     private boolean ocupada;
     private boolean norte, sur, este, oeste = false;
-    public int[] limites = {0,0,0,0};
+    public char[] limites;
     private Rectangle2D.Float cuadrado;
     private Puntero punt;
     private int anchuralinea = 2;
@@ -25,18 +25,18 @@ public class Casillas {
             ocupada = false;
        
     }
-        public Casillas(Rectangle2D.Float c, int[] lim, int X, int Y) {
+        public Casillas(Rectangle2D.Float c, char[] lim, int X, int Y) {
         limites = lim;
         this.X = X;
         this.Y = Y;
         cuadrado = c;
     }
-        public Casillas(int[] bordes){
-            if (bordes[0] == 1) norte = true;
-            if (bordes[1] == 1) este = true;
-            if (bordes[2] == 1) sur = true;
-            if (bordes[3] == 1) oeste = true;
-        }
+//        public Casillas(int[] bordes){
+//            if (bordes[0] == 1) norte = true;
+//            if (bordes[1] == 1) este = true;
+//            if (bordes[2] == 1) sur = true;
+//            if (bordes[3] == 1) oeste = true;
+//        }
     
     void setLibre() {
         ocupada=false;
@@ -60,7 +60,7 @@ public class Casillas {
         punt = p;
     }
     
-    public int[] getLimites() {
+    public char[] getLimites() {
         return limites;
     }
  
@@ -74,8 +74,8 @@ public class Casillas {
        aux.fill(cuadrado);
        
        
-       if(limites[0] == 1){   //NORTE
-           Rectangle2D.Float pared= new Rectangle2D.Float(X,Y+2,laberinto.getDimension(),anchuralinea);
+       if(limites[0] == '1'){   //NORTE
+           Rectangle2D.Float pared= new Rectangle2D.Float(X,Y-2,laberinto.getDimension(),anchuralinea);
            
            aux.setColor(Color.BLACK);
            aux.fill(pared);
@@ -83,18 +83,18 @@ public class Casillas {
            
        }
        
-       if(limites[1] == 1){  //ESTE //DERECHA
+       if(limites[1] == '1'){  //ESTE //DERECHA
            Rectangle2D.Float pared= new Rectangle2D.Float(X+laberinto.getDimension()-2,Y,anchuralinea,laberinto.getDimension()); 
            aux.setColor(Color.GREEN);
            aux.fill(pared);
-           System.out.println("derecha");
+           //System.out.println("derecha");
            
            
        }
        
       
        
-       if(limites[2] == 1){   //SUR   
+       if(limites[2] == '1'){   //SUR   
 //           aux.setColor(Color.RED);
 //           aux.drawLine(X, Y+laberinto.getDimension(), X+laberinto.getDimension(), Y+laberinto.getDimension());
 //           aux.setColor(Color.BLACK);
@@ -102,14 +102,14 @@ public class Casillas {
            Rectangle2D.Float pared= new Rectangle2D.Float(X,Y+laberinto.getDimension()-2,laberinto.getDimension(),anchuralinea); 
            aux.setColor(Color.RED);
            aux.fill(pared);
-           System.out.println("sur");
+           //System.out.println("sur");
            
        }
        
        
-       if(limites[3] == 1){   //OESTE   //IZQUIERDA
+       if(limites[3] == '1'){   //OESTE   //IZQUIERDA
            Rectangle2D.Float pared= new Rectangle2D.Float(X,Y,anchuralinea,laberinto.getDimension()); 
-           aux.setColor(Color.blue);
+           aux.setColor(Color.BLUE);
            aux.fill(pared);
            System.out.println("izquierda");
            
