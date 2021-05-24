@@ -17,11 +17,23 @@ import javax.imageio.ImageIO;
  */
 public class Puntero {
  
-    private final String imagen = "circulo.png";
+    private String imagen = "circulo.png";
     private BufferedImage png;
     
     
-    public Puntero(String imagen){
+    public Puntero(String img){
+       
+        this.imagen = img;
+        try{
+            png = ImageIO.read(new File(imagen));
+            
+        }catch(IOException e){
+            
+        }
+        
+        
+    }
+    public Puntero(){
        
         try{
             png = ImageIO.read(new File(imagen));
@@ -37,7 +49,7 @@ public class Puntero {
   
 
     void PaintComponent(Graphics g, float x, float y) {
-        g.drawImage(png, (int)x+10, (int)y+10, null);
+        g.drawImage(png, (int)x*40+10, (int)y*40+10, null);
     }
     
     

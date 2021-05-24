@@ -1,5 +1,6 @@
 package pkgfinal;
 
+import static com.sun.java.accessibility.util.AWTEventMonitor.removeKeyListener;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -71,6 +72,8 @@ public class Final extends JFrame {   //se puede quitar el public
 
     
     //
+    
+    
     
     
     addKeyListener(new KeyListener() {
@@ -228,8 +231,13 @@ public class Final extends JFrame {   //se puede quitar el public
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                Filechooser();
                 System.out.println("Selecclab");
+                Filechooser();
+                System.out.println("Se ha seleccionado el fichero: "+fichero);
+                
+                fin.setVisible(false);
+                
+                inicio();
             }
         
     }
@@ -240,8 +248,10 @@ public class Final extends JFrame {   //se puede quitar el public
 
             @Override
             public void actionPerformed(ActionEvent ae) {
+               fin.setVisible(false);
                inicio();
-                System.out.println("Reinlab");
+               System.out.println("Reinlab");
+               
             }
         
         

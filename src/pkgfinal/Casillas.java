@@ -115,9 +115,12 @@ public class Casillas {
            //System.out.println("izquierda");
            
        }
-       if (this.ocupada) {
+       /*if (this.ocupada) {
             this.punt.PaintComponent(g, this.cuadrado.x, this.cuadrado.y);
-        }
+        }*/
+       
+       
+       
        
        
        

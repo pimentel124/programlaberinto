@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Random;
 import javax.swing.JPanel;
 
 
@@ -19,13 +20,15 @@ public class laberinto extends JPanel {
     private int colsalida;
     private int filend;
     private int colend;
-    
+    Random start;
+    private Puntero punt;
  
     public Casillas grid[][];
     
     
     
     public laberinto(String fichero){
+        this.start = new Random();
         
         lector(fichero);
         
@@ -105,7 +108,7 @@ public class laberinto extends JPanel {
          
          //grid[filsalida][colsalida].setOcupada();
          
-            
+        casillainicio();    
          
             
         }catch(IOException e2){
@@ -135,13 +138,22 @@ public class laberinto extends JPanel {
                     
                     grid[i][j].paintComponent(g);
                     
+                    if(grid[i][j].info()){
+                       g.setColor(Color.RED); 
+                       g.fillOval(i*dimensionlado+10, j*dimensionlado+10, 20, 20);
+                       //punt.PaintComponent(g, i, j);
+                        
+                    }
+                    
                 }
                 
             }
             g.setColor(Color.yellow);
         //g.fillRect((dimensionlado*colsalida)-dimensionlado, dimensionlado*filsalida, dimensionlado, dimensionlado);
             
-            
+        
+        
+       
             
         } catch (Exception e) {
         }
@@ -197,5 +209,18 @@ public class laberinto extends JPanel {
         
         
         return grid[i][j].getLimites();
+    }
+    
+    
+    private void casillainicio(){
+        
+        filsalida = start.nextInt(filas);
+        colsalida = start.nextInt(columnas);
+        
+        
+        grid[filsalida][colsalida].setOcupada();
+         System.out.println("fila: "+filsalida+"   |    columna: "+colsalida);
+        
+        
     }
 }
