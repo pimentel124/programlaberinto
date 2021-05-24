@@ -8,8 +8,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.*;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+//import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
@@ -59,7 +63,7 @@ public class Final extends JFrame {   //se puede quitar el public
     
     private void atributosventana(){
     
-    this.setSize(600,800);    
+    this.setSize(columnas*laberinto.getDimension()+18,filas*laberinto.getDimension()+64);    
     this.setResizable(true);
     this.setTitle("Proyecto final laberinto");
     setDefaultCloseOperation(EXIT_ON_CLOSE);    
@@ -74,8 +78,7 @@ public class Final extends JFrame {   //se puede quitar el public
     
     //
     
-    
-    
+
     
     addKeyListener(new KeyListener() {
             @Override
@@ -227,6 +230,8 @@ public class Final extends JFrame {   //se puede quitar el public
             public void keyTyped(KeyEvent ke) {}
         });
     
+    //fin.addKeyListener(ke);
+    
     
     class selecclab implements ActionListener{
 
@@ -249,7 +254,8 @@ public class Final extends JFrame {   //se puede quitar el public
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-               fin.removeAll();
+               
+               
                fin.setVisible(false);
                inicio();
                System.out.println("Reinlab");
