@@ -217,8 +217,8 @@ public class laberinto extends JPanel {
         filsalida = start.nextInt(filas);
         colsalida = start.nextInt(columnas);
         
-        
-        grid[filsalida][colsalida].setOcupada();
+        grid[0][0].setOcupada();
+        //grid[filsalida][colsalida].setOcupada();
          System.out.println("fila: "+filsalida+"   |    columna: "+colsalida);
         
         

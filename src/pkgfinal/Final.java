@@ -80,7 +80,7 @@ public class Final extends JFrame {   //se puede quitar el public
             @Override
             public void keyPressed(KeyEvent ke) {
                 try {
-                  //System.out.println("w");
+                  
                 boolean cambio = false;
                 for (int i = 0; i < filas; i++) {
                     for (int j = 0; j < columnas; j++) {
@@ -97,7 +97,7 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnFilas(i); 
 //                                            Laberinto.setnColumnas(j);
                                              
-                                        }
+                                        }else{System.out.println("limite norte");}
                                     }
                                     cambio = true;
                                     break;
@@ -112,7 +112,7 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnFilas(i); 
 //                                            Laberinto.setnColumnas(j);
                                              
-                                        }
+                                        }else{System.out.println("limite norte");}
                                     }
                                     cambio = true;
                                     break;
@@ -126,7 +126,7 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
  
-                                        }
+                                        }else{System.out.println("limite derecha");}
                                     }
                                     cambio = true;
                                     break;
@@ -140,7 +140,7 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
  
-                                        }
+                                        }else{System.out.println("limite derecha");}
                                     }
                                     cambio = true;
                                     break;
@@ -155,7 +155,7 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
  
-                                        }
+                                        }else{System.out.println("limite sur");}
                                     }
                                     cambio = true;
                                     break;
@@ -169,7 +169,7 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
  
-                                        }
+                                        }else{System.out.println("limite sur");}
                                     }
                                     cambio = true;
                                     break;
@@ -183,7 +183,7 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
  
-                                        }
+                                        }else{System.out.println("limite izquierda");}
                                     }
                                     cambio = true;
                                     break;
@@ -196,7 +196,7 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
  
-                                        }
+                                        }else{System.out.println("limite izquierda");}
                                     }
                                     cambio = true;
                                     break;
@@ -248,6 +248,7 @@ public class Final extends JFrame {   //se puede quitar el public
 
             @Override
             public void actionPerformed(ActionEvent ae) {
+               fin.removeAll();
                fin.setVisible(false);
                inicio();
                System.out.println("Reinlab");
