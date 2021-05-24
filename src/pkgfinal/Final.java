@@ -24,6 +24,7 @@ public class Final extends JFrame {   //se puede quitar el public
     //private Casillas [][] casillas;
     private laberinto fin;
     
+    
     public void inicio(){
         importlaberinto();
         
