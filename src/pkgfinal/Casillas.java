@@ -76,9 +76,22 @@ public class Casillas {
        //System.out.println(limites);
        
        Graphics2D aux = (Graphics2D) g;
+       Graphics2D puntero = (Graphics2D) g;
        
        aux.setColor(Color.WHITE);
        aux.fill(cuadrado);
+       
+       
+       if(ocupada){
+                       puntero.setColor(Color.RED); 
+                       puntero.fillOval(X+10, Y+10, 20, 20);
+                       
+                       //punt.PaintComponent(g, i, j);
+                        
+                    }else{
+           
+          
+       }
        
        
        if(limites[0] == '1'){   //NORTE
@@ -126,6 +139,7 @@ public class Casillas {
            aux.setColor(Color.GREEN);
            aux.fill(cwin);
         }
+       
        
        
        

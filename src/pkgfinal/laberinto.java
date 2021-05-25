@@ -1,16 +1,13 @@
 package pkgfinal;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 import javax.swing.JPanel;
 
 
@@ -30,11 +27,9 @@ public class laberinto extends JPanel {
     
     
     public laberinto(String fichero){
-        this.start = new Random();
-        
+        this.start = new Random();        
         lector(fichero);
-        
-        
+       
     }
     
     
@@ -141,12 +136,7 @@ public class laberinto extends JPanel {
                     
                     grid[i][j].paintComponent(g);
                     
-                    if(grid[i][j].info()){
-                       g.setColor(Color.RED); 
-                       g.fillOval(i*dimensionlado+10, j*dimensionlado+10, 20, 20);
-                       //punt.PaintComponent(g, i, j);
-                        
-                    }
+                    
                     
                 }
                 
@@ -220,11 +210,10 @@ public class laberinto extends JPanel {
         filsalida = start.nextInt(filas);
         colsalida = start.nextInt(columnas);
         
-        grid[0][0].setOcupada();
+        grid[filsalida][colsalida].setOcupada();
         //grid[filsalida][colsalida].setOcupada();
          System.out.println("fila: "+filsalida+"   |    columna: "+colsalida);
-        
-        
+      
     }
     private void casillafinal(){
         

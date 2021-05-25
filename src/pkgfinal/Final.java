@@ -96,7 +96,7 @@ public class Final extends JFrame {   //se puede quitar el public
                                     if (j != 0) {
                                         if (fin.grid[i][j].limites[0] == '0') {
                                             
-                                            fin.grid[i][j-1].setOcupada();   
+                                            fin.grid[i-1][j].setOcupada();   
                                             fin.grid[i][j].setLibre();             
 //                                            Laberinto.setnFilas(i); 
 //                                            Laberinto.setnColumnas(j);
@@ -111,7 +111,7 @@ public class Final extends JFrame {   //se puede quitar el public
                                     System.out.println("arriba");
                                     if (j != 0) {
                                         if (fin.grid[i][j].limites[0] == '0') {
-                                            fin.grid[i][j-1].setOcupada();  
+                                            fin.grid[i-1][j].setOcupada();  
                                             fin.grid[i][j].setLibre();             
 //                                            Laberinto.setnFilas(i); 
 //                                            Laberinto.setnColumnas(j);
@@ -123,9 +123,9 @@ public class Final extends JFrame {   //se puede quitar el public
  
                                 case KeyEvent.VK_D:
                                     System.out.println("d");
-                                    if (i != columnas-1) {
+                                    if (i != columnas) {
                                         if (fin.grid[i][j].limites[1] == '0') {
-                                            fin.grid[i+1][j].setOcupada();
+                                            fin.grid[i][j+1].setOcupada();
                                             fin.grid[i][j].setLibre();
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
@@ -137,9 +137,9 @@ public class Final extends JFrame {   //se puede quitar el public
                                     
                                 case KeyEvent.VK_RIGHT:
                                     System.out.println("derecha");
-                                    if (i != columnas-1) {
+                                    if (i != columnas) {
                                         if (fin.grid[i][j].limites[1] == '0') {
-                                            fin.grid[i+1][j].setOcupada();
+                                            fin.grid[i][j+1].setOcupada();
                                             fin.grid[i][j].setLibre();
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
@@ -154,7 +154,7 @@ public class Final extends JFrame {   //se puede quitar el public
                                     System.out.println("s");
                                     if (j != filas) {
                                         if (fin.grid[i][j].limites[2] == '0') {
-                                            fin.grid[i][j+1].setOcupada();
+                                            fin.grid[i+1][j].setOcupada();
                                             fin.grid[i][j].setLibre();
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
@@ -168,7 +168,7 @@ public class Final extends JFrame {   //se puede quitar el public
                                     System.out.println("abajo");
                                     if (j != filas) {
                                         if (fin.grid[i][j].limites[2] == '0') {
-                                            fin.grid[i][j+1].setOcupada();
+                                            fin.grid[i+1][j].setOcupada();
                                             fin.grid[i][j].setLibre();
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
@@ -182,7 +182,7 @@ public class Final extends JFrame {   //se puede quitar el public
                                     System.out.println("A");
                                     if (i != 0) {
                                         if (fin.grid[i][j].limites[3] == '0') {
-                                            fin.grid[i-1][j].setOcupada();
+                                            fin.grid[i][j-1].setOcupada();
                                             fin.grid[i][j].setLibre();
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
@@ -195,7 +195,7 @@ public class Final extends JFrame {   //se puede quitar el public
                                     System.out.println("izquierda");
                                     if (i != 0) {
                                         if (fin.grid[i][j].limites[3] == '0') {
-                                            fin.grid[i-1][j].setOcupada();
+                                            fin.grid[i][j-1].setOcupada();
                                             fin.grid[i][j].setLibre();
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
