@@ -63,8 +63,8 @@ public class Final extends JFrame {   //se puede quitar el public
     
     private void atributosventana(){
     
-    this.setSize(columnas*laberinto.getDimension()+18,filas*laberinto.getDimension()+64);    
-    this.setResizable(true);
+    this.setSize(columnas*laberinto.getDimension()+8,filas*laberinto.getDimension()+54);    
+    this.setResizable(false);
     this.setTitle("Proyecto final laberinto");
     setDefaultCloseOperation(EXIT_ON_CLOSE);    
     
@@ -93,7 +93,7 @@ public class Final extends JFrame {   //se puede quitar el public
                                 case KeyEvent.VK_W:
                                                         
                                     System.out.println("w");
-                                    if (i != 0) {
+                                    if (j != 0) {
                                         if (fin.grid[i][j].limites[0] == '0') {
                                             
                                             fin.grid[i][j-1].setOcupada();   
@@ -102,14 +102,14 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnColumnas(j);
                                              
                                         }else{System.out.println("limite norte");}
-                                    }
+                                    }else{System.out.println("limite norte");}
                                     cambio = true;
                                     break;
                                     
                                 case KeyEvent.VK_UP:
                                                         //KeyEvent.VK_UP 
                                     System.out.println("arriba");
-                                    if (i != 0) {
+                                    if (j != 0) {
                                         if (fin.grid[i][j].limites[0] == '0') {
                                             fin.grid[i][j-1].setOcupada();  
                                             fin.grid[i][j].setLibre();             
@@ -117,13 +117,13 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnColumnas(j);
                                              
                                         }else{System.out.println("limite norte");}
-                                    }
+                                    }else{System.out.println("limite norte");}
                                     cambio = true;
                                     break;
  
                                 case KeyEvent.VK_D:
                                     System.out.println("d");
-                                    if (j != columnas-1) {
+                                    if (i != columnas-1) {
                                         if (fin.grid[i][j].limites[1] == '0') {
                                             fin.grid[i+1][j].setOcupada();
                                             fin.grid[i][j].setLibre();
@@ -131,13 +131,13 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnColumnas(j);
  
                                         }else{System.out.println("limite derecha");}
-                                    }
+                                    }else{System.out.println("limite derecha");}
                                     cambio = true;
                                     break;
                                     
                                 case KeyEvent.VK_RIGHT:
                                     System.out.println("derecha");
-                                    if (j != columnas-1) {
+                                    if (i != columnas-1) {
                                         if (fin.grid[i][j].limites[1] == '0') {
                                             fin.grid[i+1][j].setOcupada();
                                             fin.grid[i][j].setLibre();
@@ -145,14 +145,14 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnColumnas(j);
  
                                         }else{System.out.println("limite derecha");}
-                                    }
+                                    }else{System.out.println("limite derecha");}
                                     cambio = true;
                                     break;
  
  
                                 case KeyEvent.VK_S:
                                     System.out.println("s");
-                                    if (i != filas-1) {
+                                    if (j != filas) {
                                         if (fin.grid[i][j].limites[2] == '0') {
                                             fin.grid[i][j+1].setOcupada();
                                             fin.grid[i][j].setLibre();
@@ -160,13 +160,13 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnColumnas(j);
  
                                         }else{System.out.println("limite sur");}
-                                    }
+                                    }else{System.out.println("limite sur");}
                                     cambio = true;
                                     break;
                                     
                                 case KeyEvent.VK_DOWN:
                                     System.out.println("abajo");
-                                    if (i != filas-1) {
+                                    if (j != filas) {
                                         if (fin.grid[i][j].limites[2] == '0') {
                                             fin.grid[i][j+1].setOcupada();
                                             fin.grid[i][j].setLibre();
@@ -174,13 +174,13 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnColumnas(j);
  
                                         }else{System.out.println("limite sur");}
-                                    }
+                                    }else{System.out.println("limite sur");}
                                     cambio = true;
                                     break;
  
                                 case KeyEvent.VK_A:
                                     System.out.println("A");
-                                    if (j != 0) {
+                                    if (i != 0) {
                                         if (fin.grid[i][j].limites[3] == '0') {
                                             fin.grid[i-1][j].setOcupada();
                                             fin.grid[i][j].setLibre();
@@ -188,12 +188,12 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnColumnas(j);
  
                                         }else{System.out.println("limite izquierda");}
-                                    }
+                                    }else{System.out.println("limite izquierda");}
                                     cambio = true;
                                     break;
                                 case KeyEvent.VK_LEFT:
                                     System.out.println("izquierda");
-                                    if (j != 0) {
+                                    if (i != 0) {
                                         if (fin.grid[i][j].limites[3] == '0') {
                                             fin.grid[i-1][j].setOcupada();
                                             fin.grid[i][j].setLibre();
@@ -201,7 +201,7 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnColumnas(j);
  
                                         }else{System.out.println("limite izquierda");}
-                                    }
+                                    }else{System.out.println("limite izquierda");}
                                     cambio = true;
                                     break;
  
@@ -243,7 +243,7 @@ public class Final extends JFrame {   //se puede quitar el public
                 
                 fin.setVisible(false);
                 
-                inicio();
+                importlaberinto();
             }
         
     }
@@ -257,8 +257,10 @@ public class Final extends JFrame {   //se puede quitar el public
                
                
                fin.setVisible(false);
-               inicio();
+               //inicio();
                System.out.println("Reinlab");
+               importlaberinto();
+               
                
             }
         

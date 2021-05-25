@@ -8,7 +8,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 import javax.swing.JPanel;
 
 
@@ -87,9 +89,9 @@ public class laberinto extends JPanel {
          
 
          
-         filsalida = aInt(linea = br.readLine());
+         filend = aInt(linea = br.readLine());
             System.out.println("filas "+filsalida);
-         colsalida = aInt(linea = br.readLine());
+         colend = aInt(linea = br.readLine());
             System.out.println("columnas "+colsalida);
          
          
@@ -108,7 +110,8 @@ public class laberinto extends JPanel {
          
          //grid[filsalida][colsalida].setOcupada();
          
-        casillainicio();    
+        casillainicio();
+        casillafinal();
          
             
         }catch(IOException e2){
@@ -220,6 +223,15 @@ public class laberinto extends JPanel {
         grid[0][0].setOcupada();
         //grid[filsalida][colsalida].setOcupada();
          System.out.println("fila: "+filsalida+"   |    columna: "+colsalida);
+        
+        
+    }
+    private void casillafinal(){
+        
+        grid[filend][colend-1].setWin();
+        
+        System.out.println("Final en: "+filend+" y "+colend);
+        
         
         
     }

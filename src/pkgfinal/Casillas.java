@@ -17,12 +17,14 @@ public class Casillas {
     private Rectangle2D.Float cuadrado;
     private Puntero punt;
     private int anchuralinea = 2;
+    private boolean win;
     
     
     
         public Casillas(){
     
             ocupada = false;
+            win = false;
        
     }
         public Casillas(Rectangle2D.Float c, char[] lim, int X, int Y) {
@@ -40,6 +42,10 @@ public class Casillas {
     
     void setLibre() {
         ocupada=false;
+    }
+    
+    public void setWin(){
+        win = true;
     }
     
     
@@ -115,9 +121,11 @@ public class Casillas {
            //System.out.println("izquierda");
            
        }
-       /*if (this.ocupada) {
-            this.punt.PaintComponent(g, this.cuadrado.x, this.cuadrado.y);
-        }*/
+       if (this.win) {
+           Rectangle2D.Float cwin = new Rectangle2D.Float(X,Y,laberinto.getDimension(),laberinto.getDimension());
+           aux.setColor(Color.GREEN);
+           aux.fill(cwin);
+        }
        
        
        
