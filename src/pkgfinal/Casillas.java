@@ -19,7 +19,7 @@ public class Casillas {
     private boolean win;
     private Color cfondo = Color.WHITE;
     private Color cpuntero = Color.RED;
-    
+    private Color cparedes = Color.BLACK;
         public Casillas(){
     
             ocupada = false;
@@ -52,7 +52,9 @@ public class Casillas {
     public void setColorPuntero(Color puntero) {
         this.cpuntero = puntero;
     }
-    
+    public void setColorParedes(Color paredes) {
+        this.cparedes = paredes;
+    }
     
     
     public void setWin(){
@@ -105,7 +107,7 @@ public class Casillas {
        if(limites[0] == '1'){   //NORTE
            Rectangle2D.Float pared= new Rectangle2D.Float(X,Y,laberinto.getDimension(),anchuralinea);
            
-           aux.setColor(Color.BLACK);
+           aux.setColor(cparedes);
            aux.fill(pared);
            //System.out.println("norte");
            
@@ -113,7 +115,7 @@ public class Casillas {
        
        if(limites[1] == '1'){  //ESTE //DERECHA
            Rectangle2D.Float pared= new Rectangle2D.Float(X+laberinto.getDimension(),Y,anchuralinea,laberinto.getDimension()); 
-           aux.setColor(Color.BLACK);
+           aux.setColor(cparedes);
            aux.fill(pared);
            //System.out.println("derecha");
            
@@ -128,7 +130,7 @@ public class Casillas {
 //           aux.setColor(Color.BLACK);
 //           aux.drawLine(X, Y, X+laberinto.getDimension(), Y+laberinto.getDimension());
            Rectangle2D.Float pared= new Rectangle2D.Float(X,Y+laberinto.getDimension(),laberinto.getDimension(),anchuralinea); 
-           aux.setColor(Color.BLACK);
+           aux.setColor(cparedes);
            aux.fill(pared);
            //System.out.println("sur");
            
@@ -137,14 +139,14 @@ public class Casillas {
        
        if(limites[3] == '1'){   //OESTE   //IZQUIERDA
            Rectangle2D.Float pared= new Rectangle2D.Float(X,Y,anchuralinea,laberinto.getDimension()); 
-           aux.setColor(Color.BLACK);
+           aux.setColor(cparedes);
            aux.fill(pared);
            //System.out.println("izquierda");
            
        }
        if (this.win) {
            Rectangle2D.Float cwin = new Rectangle2D.Float(X+2,Y+2,laberinto.getDimension()-2,laberinto.getDimension()-2);
-           aux.setColor(Color.GREEN);
+           aux.setColor(Color.lightGray);
            aux.fill(cwin);
         }
        

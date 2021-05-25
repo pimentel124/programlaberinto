@@ -31,7 +31,7 @@ public class Final extends JFrame {   //se puede quitar el public
     
     private Color cfondo = Color.WHITE;
     private Color cpuntero = Color.RED;
-    
+    private Color cparedes = Color.BLACK;
     
     public void inicio(){
         importlaberinto();
@@ -81,10 +81,12 @@ public class Final extends JFrame {   //se puede quitar el public
     JMenu colores = new JMenu("Visualización");
     JMenuItem colorfondo = new JMenuItem("Seleccionar color de fondo");
     JMenuItem colorpuntero = new JMenuItem("Seleccionar color del puntero");
-    
+    JMenuItem colorparedes = new JMenuItem("Seleccionar color de las paredes");
     //
     
-
+   // if(fin.grid[fin.getFilend()][fin.getColend()].info()){
+    
+    //}
     
     addKeyListener(new KeyListener() {
             @Override
@@ -304,6 +306,7 @@ public class Final extends JFrame {   //se puede quitar el public
             cfondo = colorchooser();
             
             fin.setColorFondo(cfondo);
+            repaint();
         }
     }
     colorfondo.addActionListener(new colorfondo());
@@ -316,14 +319,33 @@ public class Final extends JFrame {   //se puede quitar el public
         public void actionPerformed(ActionEvent ae){
             cpuntero = colorchooser();
             fin.setColorPuntero(cpuntero);
+            repaint();
         }
     }
     colorpuntero.addActionListener(new colorpuntero());
     
+    class colorparedes implements ActionListener{
+        
+        
+        
+        @Override
+        public void actionPerformed(ActionEvent ae){
+            cparedes = colorchooser();
+            fin.setColorParedes(cparedes);
+            repaint();
+        }
+    }
+    
+    colorparedes.addActionListener(new colorparedes());
     
     barramenu.add(colores);
     colores.add(colorfondo);
     colores.add(colorpuntero);
+    colores.add(colorparedes);
+    
+    
+    
+    
     
     repaint();
     

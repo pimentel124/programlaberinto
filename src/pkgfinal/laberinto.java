@@ -138,10 +138,11 @@ public class laberinto extends JPanel {
                     
                     grid[i][j].setColorFondo(cFondo);
                     grid[i][j].setColorPuntero(cPuntero);
+                    grid[i][j].setColorParedes(cParedes);
                     grid[i][j].paintComponent(g);
+                
                     
-                    
-                    
+
                 }
                 
             }
