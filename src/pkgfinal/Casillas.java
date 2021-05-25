@@ -9,17 +9,16 @@ import java.awt.geom.Rectangle2D;
 
 public class Casillas {
     
-    private int X;
-    private int Y;
-    private boolean ocupada;
-    private boolean norte, sur, este, oeste = false;
+    private int X;   //coordenada pixeles X
+    private int Y;   //coordenada pixeles Y
+    private boolean ocupada;   //
     public char[] limites;
     private Rectangle2D.Float cuadrado;
     private Puntero punt;
     private int anchuralinea = 2;
     private boolean win;
-    
-    
+    private Color cfondo = Color.WHITE;
+    private Color cpuntero = Color.RED;
     
         public Casillas(){
     
@@ -28,6 +27,7 @@ public class Casillas {
        
     }
         public Casillas(Rectangle2D.Float c, char[] lim, int X, int Y) {
+        ocupada = false;
         limites = lim;
         this.X = X;
         this.Y = Y;
@@ -43,6 +43,17 @@ public class Casillas {
     void setLibre() {
         ocupada=false;
     }
+    
+    public void setColorFondo(Color fondo){
+        this.cfondo = fondo;
+        
+    }
+    
+    public void setColorPuntero(Color puntero) {
+        this.cpuntero = puntero;
+    }
+    
+    
     
     public void setWin(){
         win = true;
@@ -78,20 +89,17 @@ public class Casillas {
        Graphics2D aux = (Graphics2D) g;
        Graphics2D puntero = (Graphics2D) g;
        
-       aux.setColor(Color.WHITE);
+       aux.setColor(cfondo);
        aux.fill(cuadrado);
        
        
        if(ocupada){
-                       puntero.setColor(Color.RED); 
+                       puntero.setColor(cpuntero); 
                        puntero.fillOval(X+10, Y+10, 20, 20);
                        
                        //punt.PaintComponent(g, i, j);
                         
-                    }else{
-           
-          
-       }
+                    }
        
        
        if(limites[0] == '1'){   //NORTE
@@ -135,7 +143,7 @@ public class Casillas {
            
        }
        if (this.win) {
-           Rectangle2D.Float cwin = new Rectangle2D.Float(X,Y,laberinto.getDimension(),laberinto.getDimension());
+           Rectangle2D.Float cwin = new Rectangle2D.Float(X+2,Y+2,laberinto.getDimension()-2,laberinto.getDimension()-2);
            aux.setColor(Color.GREEN);
            aux.fill(cwin);
         }

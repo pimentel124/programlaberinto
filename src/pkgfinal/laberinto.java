@@ -19,6 +19,9 @@ public class laberinto extends JPanel {
     private int colsalida;
     private int filend;
     private int colend;
+    private Color cFondo = Color.WHITE;
+    private Color cPuntero = Color.RED;
+    private Color cParedes = Color.BLACK;
     Random start;
     private Puntero punt;
  
@@ -133,7 +136,8 @@ public class laberinto extends JPanel {
                 
                 for (int j = 0; j < columnas; j++) {
                     
-                    
+                    grid[i][j].setColorFondo(cFondo);
+                    grid[i][j].setColorPuntero(cPuntero);
                     grid[i][j].paintComponent(g);
                     
                     
@@ -176,6 +180,20 @@ public class laberinto extends JPanel {
         
         
         
+    }
+    
+    
+    public void setColorFondo(Color fondo){
+        this.cFondo = fondo;
+        
+    }
+    
+    public void setColorPuntero(Color puntero) {
+        this.cPuntero = puntero;
+    }
+    
+    public void setColorParedes(Color paredes) {
+        this.cParedes = paredes;
     }
     
     

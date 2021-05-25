@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
+import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -27,6 +28,9 @@ public class Final extends JFrame {   //se puede quitar el public
     private String fichero = "maze1.txt";
     //private Casillas [][] casillas;
     private laberinto fin;
+    
+    private Color cfondo = Color.WHITE;
+    private Color cpuntero = Color.RED;
     
     
     public void inicio(){
@@ -71,10 +75,12 @@ public class Final extends JFrame {   //se puede quitar el public
     JMenuBar barramenu = new JMenuBar();
     this.setJMenuBar(barramenu);
     JMenu menlaber = new JMenu("Laberintos");
-    JMenuItem selecclab = new JMenuItem("Seleccionar laberinto");
+    JMenuItem selecclab = new JMenuItem("Selecionar laberinto");
     JMenuItem reinlab = new JMenuItem("Reiniciar laberinto");
     JMenuItem exitlab = new JMenuItem("Salir del laberinto");
-
+    JMenu colores = new JMenu("Visualización");
+    JMenuItem colorfondo = new JMenuItem("Seleccionar color de fondo");
+    JMenuItem colorpuntero = new JMenuItem("Seleccionar color del puntero");
     
     //
     
@@ -93,7 +99,7 @@ public class Final extends JFrame {   //se puede quitar el public
                                 case KeyEvent.VK_W:
                                                         
                                     System.out.println("w");
-                                    if (j != 0) {
+                                    if (i != 0) {
                                         if (fin.grid[i][j].limites[0] == '0') {
                                             
                                             fin.grid[i-1][j].setOcupada();   
@@ -109,7 +115,7 @@ public class Final extends JFrame {   //se puede quitar el public
                                 case KeyEvent.VK_UP:
                                                         //KeyEvent.VK_UP 
                                     System.out.println("arriba");
-                                    if (j != 0) {
+                                    if (i != 0) {
                                         if (fin.grid[i][j].limites[0] == '0') {
                                             fin.grid[i-1][j].setOcupada();  
                                             fin.grid[i][j].setLibre();             
@@ -123,7 +129,7 @@ public class Final extends JFrame {   //se puede quitar el public
  
                                 case KeyEvent.VK_D:
                                     System.out.println("d");
-                                    if (i != columnas) {
+                                    if (j != columnas) {
                                         if (fin.grid[i][j].limites[1] == '0') {
                                             fin.grid[i][j+1].setOcupada();
                                             fin.grid[i][j].setLibre();
@@ -137,7 +143,7 @@ public class Final extends JFrame {   //se puede quitar el public
                                     
                                 case KeyEvent.VK_RIGHT:
                                     System.out.println("derecha");
-                                    if (i != columnas) {
+                                    if (j != columnas) {
                                         if (fin.grid[i][j].limites[1] == '0') {
                                             fin.grid[i][j+1].setOcupada();
                                             fin.grid[i][j].setLibre();
@@ -152,7 +158,7 @@ public class Final extends JFrame {   //se puede quitar el public
  
                                 case KeyEvent.VK_S:
                                     System.out.println("s");
-                                    if (j != filas) {
+                                    if (i != filas) {
                                         if (fin.grid[i][j].limites[2] == '0') {
                                             fin.grid[i+1][j].setOcupada();
                                             fin.grid[i][j].setLibre();
@@ -166,7 +172,7 @@ public class Final extends JFrame {   //se puede quitar el public
                                     
                                 case KeyEvent.VK_DOWN:
                                     System.out.println("abajo");
-                                    if (j != filas) {
+                                    if (i != filas) {
                                         if (fin.grid[i][j].limites[2] == '0') {
                                             fin.grid[i+1][j].setOcupada();
                                             fin.grid[i][j].setLibre();
@@ -180,7 +186,7 @@ public class Final extends JFrame {   //se puede quitar el public
  
                                 case KeyEvent.VK_A:
                                     System.out.println("A");
-                                    if (i != 0) {
+                                    if (j != 0) {
                                         if (fin.grid[i][j].limites[3] == '0') {
                                             fin.grid[i][j-1].setOcupada();
                                             fin.grid[i][j].setLibre();
@@ -193,7 +199,7 @@ public class Final extends JFrame {   //se puede quitar el public
                                     break;
                                 case KeyEvent.VK_LEFT:
                                     System.out.println("izquierda");
-                                    if (i != 0) {
+                                    if (j != 0) {
                                         if (fin.grid[i][j].limites[3] == '0') {
                                             fin.grid[i][j-1].setOcupada();
                                             fin.grid[i][j].setLibre();
@@ -281,14 +287,43 @@ public class Final extends JFrame {   //se puede quitar el public
     
     exitlab.addActionListener(new exitlab());
     
-        
-    
-    
-    
     barramenu.add(menlaber);
     menlaber.add(selecclab);
     menlaber.add(reinlab);
     menlaber.add(exitlab);
+    
+    
+    
+    class colorfondo implements ActionListener{
+        
+        
+        
+        @Override
+        public void actionPerformed(ActionEvent ae){
+            
+            cfondo = colorchooser();
+            
+            fin.setColorFondo(cfondo);
+        }
+    }
+    colorfondo.addActionListener(new colorfondo());
+    
+    class colorpuntero implements ActionListener{
+        
+        
+        
+        @Override
+        public void actionPerformed(ActionEvent ae){
+            cpuntero = colorchooser();
+            fin.setColorPuntero(cpuntero);
+        }
+    }
+    colorpuntero.addActionListener(new colorpuntero());
+    
+    
+    barramenu.add(colores);
+    colores.add(colorfondo);
+    colores.add(colorpuntero);
     
     repaint();
     
@@ -339,9 +374,12 @@ public class Final extends JFrame {   //se puede quitar el public
     }
     
     
+    private Color colorchooser(){
+
+        Color color=JColorChooser.showDialog(null, "SELECCIONE EL COLOR DE FONDO", Color.LIGHT_GRAY);
+       
+        return color;
+    }
     
-    
-    
-    
-    
+
 }
