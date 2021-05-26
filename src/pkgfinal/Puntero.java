@@ -5,51 +5,25 @@
  */
 package pkgfinal;
 
+import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-
+import java.awt.Graphics2D;
 /**
  *
  * @author alvar
  */
 public class Puntero {
- 
-    private String imagen = "circulo.png";
-    private BufferedImage png;
     
-    
-    public Puntero(String img){
-       
-        this.imagen = img;
-        try{
-            png = ImageIO.read(new File(imagen));
-            
-        }catch(IOException e){
-            
-        }
+   
+    public void PaintComponent(Graphics g, float x, float y, Color cpuntero) {
         
         
-    }
-    public Puntero(){
-       
-        try{
-            png = ImageIO.read(new File(imagen));
-            
-        }catch(IOException e){
-            
-        }
+       Graphics2D puntero = (Graphics2D) g;
         
+        puntero.setColor(cpuntero); 
+        puntero.fillOval((int)x+10, (int)y+10, 20, 20);
         
-    }
-    
-    
-  
-
-    void PaintComponent(Graphics g, float x, float y) {
-        g.drawImage(png, (int)x*40+10, (int)y*40+10, null);
+      
     }
     
     

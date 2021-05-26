@@ -23,7 +23,7 @@ public class laberinto extends JPanel {
     private Color cPuntero = Color.RED;
     private Color cParedes = Color.BLACK;
     Random start;
-    private Puntero punt;
+   
  
     public Casillas grid[][];
     
@@ -146,7 +146,7 @@ public class laberinto extends JPanel {
                 }
                 
             }
-            g.setColor(Color.yellow);
+            //g.setColor(Color.yellow);
         //g.fillRect((dimensionlado*colsalida)-dimensionlado, dimensionlado*filsalida, dimensionlado, dimensionlado);
             
         

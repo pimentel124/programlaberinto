@@ -1,6 +1,6 @@
 package pkgfinal;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.removeKeyListener;
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,7 +26,6 @@ public class Final extends JFrame {   //se puede quitar el public
     private static int filas;
     private static int columnas;
     private String fichero = "maze1.txt";
-    //private Casillas [][] casillas;
     private laberinto fin;
     
     private Color cfondo = Color.WHITE;
@@ -96,6 +95,10 @@ public class Final extends JFrame {   //se puede quitar el public
                 boolean cambio = false;
                 for (int i = 0; i < filas; i++) {
                     for (int j = 0; j < columnas; j++) {
+//                        if (fin.grid[fin.getFilend()-1][fin.getColend()-1].info()) {
+//                            
+//                            System.out.println("has ganado");
+//                        }
                         if (fin.grid[i][j].info()) {
                             switch (ke.getKeyCode()) {
                                 case KeyEvent.VK_W:

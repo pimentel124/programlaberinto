@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 
 
@@ -76,14 +78,13 @@ public class Casillas {
     public void setFicha(Puntero p) {
         System.out.println("setficha");
         ocupada = true;
-        punt = p;
+//        punt = p;
     }
     
     public char[] getLimites() {
         return limites;
     }
  
-    
    public void paintComponent(Graphics g) throws Exception {
        
        //System.out.println(limites);
@@ -95,13 +96,9 @@ public class Casillas {
        aux.fill(cuadrado);
        
        
-       if(ocupada){
-                       puntero.setColor(cpuntero); 
-                       puntero.fillOval(X+10, Y+10, 20, 20);
-                       
-                       //punt.PaintComponent(g, i, j);
-                        
-                    }
+       
+       
+       
        
        
        if(limites[0] == '1'){   //NORTE
@@ -150,7 +147,30 @@ public class Casillas {
            aux.fill(cwin);
         }
        
-       
+       if(ocupada){
+           
+                       //punt.PaintComponent(g, X, Y, cpuntero);
+                       puntero.setColor(cpuntero); 
+                       puntero.fillOval(X+10, Y+10, 20, 20);
+                       
+                       
+                       if(win){
+                           
+                           
+                           System.out.println("Has ganado");
+                       
+                       
+                       JOptionPane.showMessageDialog(new JFrame(),"\n\n\n Has ganado!!  ");
+                       
+                       ocupada = false;
+                       
+                       System.exit(0);
+                            
+                       
+                       //punt.PaintComponent(g, i, j);
+                       }
+                        
+                    }
        
        
        
@@ -166,3 +186,4 @@ public class Casillas {
     
     
 }
+
