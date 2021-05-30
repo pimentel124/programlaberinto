@@ -20,8 +20,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Final extends JFrame {   //se puede quitar el public
   
-    
-    private int ubiX, ubiY;
           
     private static int filas;
     private static int columnas;

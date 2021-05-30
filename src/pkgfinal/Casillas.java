@@ -148,10 +148,12 @@ public class Casillas {
         }
        
        if(ocupada){
-           
+                       Puntero bola = new Puntero();
+                       
+                       bola.PaintComponent(g, X, Y, cpuntero);
                        //punt.PaintComponent(g, X, Y, cpuntero);
-                       puntero.setColor(cpuntero); 
-                       puntero.fillOval(X+10, Y+10, 20, 20);
+                       //puntero.setColor(cpuntero); 
+                       //puntero.fillOval(X+10, Y+10, 20, 20);
                        
                        
                        if(win){
@@ -160,14 +162,12 @@ public class Casillas {
                            System.out.println("Has ganado");
                        
                        
-                       JOptionPane.showMessageDialog(new JFrame(),"\n\n\n Has ganado!!  ");
+                       JOptionPane.showMessageDialog(new JFrame(),"            ¡¡Has ganado!!");
                        
                        ocupada = false;
                        
                        System.exit(0);
-                            
-                       
-                       //punt.PaintComponent(g, i, j);
+
                        }
                         
                     }
