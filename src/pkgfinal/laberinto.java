@@ -22,12 +22,10 @@ public class laberinto extends JPanel {
     private Color cFondo = Color.WHITE;
     private Color cPuntero = Color.RED;
     private Color cParedes = Color.BLACK;
-    Random start;
+    private Random start;
    
- 
     public Casillas grid[][];
-    
-    
+     
     
     public laberinto(String fichero){
         this.start = new Random();        

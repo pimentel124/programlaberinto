@@ -75,11 +75,11 @@ public class Casillas {
     
    
     
-    public void setFicha(Puntero p) {
+   /* public void setFicha(Puntero p) {
         System.out.println("setficha");
         ocupada = true;
 //        punt = p;
-    }
+    }*/
     
     public char[] getLimites() {
         return limites;

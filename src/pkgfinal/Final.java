@@ -1,6 +1,5 @@
 package pkgfinal;
 
-
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-//import javax.swing.*;
+import javax.swing.JOptionPane;
+
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
@@ -25,7 +25,7 @@ public class Final extends JFrame {   //se puede quitar el public
     private static int columnas;
     private String fichero = "maze1.txt";
     private laberinto fin;
-    
+    private Color caux;
     private Color cfondo = Color.WHITE;
     private Color cpuntero = Color.RED;
     private Color cparedes = Color.BLACK;
@@ -92,11 +92,9 @@ public class Final extends JFrame {   //se puede quitar el public
                   
                 boolean cambio = false;
                 for (int i = 0; i < filas; i++) {
+                    
                     for (int j = 0; j < columnas; j++) {
-//                        if (fin.grid[fin.getFilend()-1][fin.getColend()-1].info()) {
-//                            
-//                            System.out.println("has ganado");
-//                        }
+//                        
                         if (fin.grid[i][j].info()) {
                             switch (ke.getKeyCode()) {
                                 case KeyEvent.VK_W:
@@ -248,6 +246,11 @@ public class Final extends JFrame {   //se puede quitar el public
             public void actionPerformed(ActionEvent ae) {
                 System.out.println("Selecclab");
                 Filechooser();
+                while(fichero == null){
+                JOptionPane.showMessageDialog(new JFrame(),"Por favor, seleccione un archivo .txt");    
+                    
+                    Filechooser();
+                }
                 System.out.println("Se ha seleccionado el fichero: "+fichero);
                 
                 fin.setVisible(false);
@@ -303,8 +306,14 @@ public class Final extends JFrame {   //se puede quitar el public
         
         @Override
         public void actionPerformed(ActionEvent ae){
+            caux = cfondo;
             
-            cfondo = colorchooser();
+            caux = colorchooser();
+            if (caux != null){
+                cfondo = caux;
+            }
+            
+            //cfondo = colorchooser();
             
             fin.setColorFondo(cfondo);
             repaint();
@@ -318,7 +327,16 @@ public class Final extends JFrame {   //se puede quitar el public
         
         @Override
         public void actionPerformed(ActionEvent ae){
-            cpuntero = colorchooser();
+            
+            caux = cpuntero;
+            
+            caux = colorchooser();
+            if (caux != null){
+                cpuntero = caux;
+            }
+            
+            //cpuntero = colorchooser();
+            
             fin.setColorPuntero(cpuntero);
             repaint();
         }
@@ -331,7 +349,14 @@ public class Final extends JFrame {   //se puede quitar el public
         
         @Override
         public void actionPerformed(ActionEvent ae){
-            cparedes = colorchooser();
+            caux = cparedes;
+            
+            caux = colorchooser();
+            if (caux != null){
+                cparedes = caux;
+            }
+            
+            //cparedes = colorchooser();
             fin.setColorParedes(cparedes);
             repaint();
         }
@@ -374,6 +399,8 @@ public class Final extends JFrame {   //se puede quitar el public
     
     private String Filechooser(){    //metodo encargado de seleecionar un fichero de texto
         
+        //Falta control de excepciones
+        
         JFileChooser fc = new JFileChooser();    //se intanca la componente JFileChooser
         
         File dir = new File(System.getProperty("user.dir"));     //Se obtiene el directorio del usuario
@@ -384,12 +411,15 @@ public class Final extends JFrame {   //se puede quitar el public
         fc.setFileFilter(txt);                                   //Se añade el filto al FileChooser
         
         //se abre la ventana y se ejecuta la selección del fichero. 
+        
         int funciona = fc.showOpenDialog(fc);
         fichero = null;
         if (funciona == JFileChooser.APPROVE_OPTION){
             
             fichero = fc.getSelectedFile().getName();
         }
+        
+        
         
         //En caso de que la operación se haya realizado correctamente, el método devuelve el nombre del fichero como String
         
@@ -399,7 +429,7 @@ public class Final extends JFrame {   //se puede quitar el public
     
     private Color colorchooser(){
 
-        Color color=JColorChooser.showDialog(null, "SELECCIONE EL COLOR DE FONDO", Color.LIGHT_GRAY);
+        Color color=JColorChooser.showDialog(null, "SELECCIONE EL COLOR DE FONDO", Color.WHITE);
        
         return color;
     }
