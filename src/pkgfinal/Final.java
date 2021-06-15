@@ -6,7 +6,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -16,6 +24,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
+import sun.audio.AudioStream;
 
 
 public class Final extends JFrame {   //se puede quitar el public
@@ -29,6 +38,7 @@ public class Final extends JFrame {   //se puede quitar el public
     private Color cfondo = Color.WHITE;
     private Color cpuntero = Color.RED;
     private Color cparedes = Color.BLACK;
+    final JFXPanel fxPanel = new JFXPanel();
     
     public void inicio(){
         importlaberinto();
@@ -85,15 +95,23 @@ public class Final extends JFrame {   //se puede quitar el public
     
     //}
     
+    
+
+    
     addKeyListener(new KeyListener() {
             @Override
             public void keyPressed(KeyEvent ke) {
                 try {
-                  
+                  String bip = "cortado.mp3";
+                        Media hit = new Media(new File(bip).toURI().toString());
+                        MediaPlayer mediaPlayer = new MediaPlayer(hit);
+    
                 boolean cambio = false;
                 for (int i = 0; i < filas; i++) {
                     
                     for (int j = 0; j < columnas; j++) {
+                        
+                        
 //                        
                         if (fin.grid[i][j].info()) {
                             switch (ke.getKeyCode()) {
@@ -108,8 +126,12 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnFilas(i); 
 //                                            Laberinto.setnColumnas(j);
                                              
-                                        }else{System.out.println("limite norte");}
-                                    }else{System.out.println("limite norte");}
+                                        }else{System.out.println("limite norte");
+                                        mediaPlayer.play();
+                                        }
+                                    }else{System.out.println("limite norte");
+                                    mediaPlayer.play();
+                                    }
                                     cambio = true;
                                     break;
                                     
@@ -123,8 +145,10 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnFilas(i); 
 //                                            Laberinto.setnColumnas(j);
                                              
-                                        }else{System.out.println("limite norte");}
-                                    }else{System.out.println("limite norte");}
+                                        }else{System.out.println("limite norte");
+                                        mediaPlayer.play();}
+                                    }else{System.out.println("limite norte");
+                                    mediaPlayer.play();}
                                     cambio = true;
                                     break;
  
@@ -137,8 +161,10 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
  
-                                        }else{System.out.println("limite derecha");}
-                                    }else{System.out.println("limite derecha");}
+                                        }else{System.out.println("limite derecha");
+                                        mediaPlayer.play();}
+                                    }else{System.out.println("limite derecha");
+                                    mediaPlayer.play();}
                                     cambio = true;
                                     break;
                                     
@@ -151,7 +177,8 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
  
-                                        }else{System.out.println("limite derecha");}
+                                        }else{System.out.println("limite derecha");
+                                        mediaPlayer.play();}
                                     }else{System.out.println("limite derecha");}
                                     cambio = true;
                                     break;
@@ -166,8 +193,10 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
  
-                                        }else{System.out.println("limite sur");}
-                                    }else{System.out.println("limite sur");}
+                                        }else{System.out.println("limite sur");
+                                        mediaPlayer.play();}
+                                    }else{System.out.println("limite sur");
+                                    mediaPlayer.play();}
                                     cambio = true;
                                     break;
                                     
@@ -180,8 +209,10 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
  
-                                        }else{System.out.println("limite sur");}
-                                    }else{System.out.println("limite sur");}
+                                        }else{System.out.println("limite sur");
+                                        mediaPlayer.play();}
+                                    }else{System.out.println("limite sur");
+                                    mediaPlayer.play();}
                                     cambio = true;
                                     break;
  
@@ -194,8 +225,10 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
  
-                                        }else{System.out.println("limite izquierda");}
-                                    }else{System.out.println("limite izquierda");}
+                                        }else{System.out.println("limite izquierda");
+                                        mediaPlayer.play();}
+                                    }else{System.out.println("limite izquierda");
+                                    mediaPlayer.play();}
                                     cambio = true;
                                     break;
                                 case KeyEvent.VK_LEFT:
@@ -207,8 +240,10 @@ public class Final extends JFrame {   //se puede quitar el public
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
  
-                                        }else{System.out.println("limite izquierda");}
-                                    }else{System.out.println("limite izquierda");}
+                                        }else{System.out.println("limite izquierda");
+                                        mediaPlayer.play();}
+                                    }else{System.out.println("limite izquierda");
+                                    mediaPlayer.play();}
                                     cambio = true;
                                     break;
  
@@ -396,6 +431,7 @@ public class Final extends JFrame {   //se puede quitar el public
     }
     
     
+
     
     private String Filechooser(){    //metodo encargado de seleecionar un fichero de texto
         

@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
+import java.io.File;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -161,7 +164,10 @@ public class Casillas {
                            
                            System.out.println("Has ganado");
                        
-                       
+                        String bip = "win2.mp3";
+                        Media hit = new Media(new File(bip).toURI().toString());
+                        MediaPlayer mediaPlayer = new MediaPlayer(hit);
+                        mediaPlayer.play();
                        JOptionPane.showMessageDialog(new JFrame(),"            ¡¡Has ganado!!");
                        
                        ocupada = false;
