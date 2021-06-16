@@ -85,12 +85,30 @@ public class Final extends JFrame {   //se genera un JFrame a partir de la clase
         JMenuItem reinlab = new JMenuItem("Reiniciar laberinto");
         JMenuItem exitlab = new JMenuItem("Salir del laberinto");
 
+        selecclab.addActionListener(new GestorEventos());
+        reinlab.addActionListener(new GestorEventos());
+        exitlab.addActionListener(new GestorEventos());
+
+        barramenu.add(menlaber);
+        menlaber.add(selecclab);
+        menlaber.add(reinlab);
+        menlaber.add(exitlab);
+
         //declaración del segundo apartado de la barra de menú y sus componentes 
         //o apartados JMenuItem con sus correspondientes nombres
         JMenu colores = new JMenu("Visualización");
         JMenuItem colorfondo = new JMenuItem("Seleccionar color de fondo");
         JMenuItem colorpuntero = new JMenuItem("Seleccionar color del puntero");
         JMenuItem colorparedes = new JMenuItem("Seleccionar color de las paredes");
+
+        colorfondo.addActionListener(new GestorEventos());
+        colorpuntero.addActionListener(new GestorEventos());
+        colorparedes.addActionListener(new GestorEventos());
+
+        barramenu.add(colores);
+        colores.add(colorfondo);
+        colores.add(colorpuntero);
+        colores.add(colorparedes);
 
         //implementación del KeyListener para gestionar el movimiento del puntero seún 
         //la tecla pulsada
@@ -137,7 +155,7 @@ public class Final extends JFrame {   //se genera un JFrame a partir de la clase
                                                 //y a desocupar la casilla inicial
                                                 lab.grid[i - 1][j].setOcupada();
                                                 lab.grid[i][j].setLibre();
-//                                          
+                                                
                                             } else {
                                                 System.out.println("limite norte");
                                             }
@@ -271,120 +289,6 @@ public class Final extends JFrame {   //se genera un JFrame a partir de la clase
             }
         });
 
-        class selecclab implements ActionListener {
-
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                System.out.println("Selecclab");
-                Filechooser();
-                while (fichero == null) {
-                    JOptionPane.showMessageDialog(new JFrame(), "Por favor, seleccione un archivo .txt");
-
-                    Filechooser();
-                }
-                System.out.println("Se ha seleccionado el fichero: " + fichero);
-
-                lab.setVisible(false);
-
-                importlaberinto();
-            }
-
-        }
-
-        selecclab.addActionListener(new selecclab());
-
-        class reinlab implements ActionListener {
-
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-
-                lab.setVisible(false);
-                //inicio();
-                System.out.println("Reinlab");
-                importlaberinto();
-
-            }
-
-        }
-
-        reinlab.addActionListener(new reinlab());
-
-        class exitlab implements ActionListener {
-
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                System.exit(0);
-            }
-
-        }
-
-        exitlab.addActionListener(new exitlab());
-
-        barramenu.add(menlaber);
-        menlaber.add(selecclab);
-        menlaber.add(reinlab);
-        menlaber.add(exitlab);
-
-        class colorfondo implements ActionListener {
-
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                caux = cfondo;
-
-                caux = Colorchooser();
-                if (caux != null) {
-                    cfondo = caux;
-                }
-
-                //cfondo = colorchooser();
-                lab.setColorFondo(cfondo);
-                repaint();
-            }
-        }
-        colorfondo.addActionListener(new colorfondo());
-
-        class colorpuntero implements ActionListener {
-
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-
-                caux = cpuntero;
-
-                caux = Colorchooser();
-                if (caux != null) {
-                    cpuntero = caux;
-                }
-
-                //cpuntero = colorchooser();
-                lab.setColorPuntero(cpuntero);
-                repaint();
-            }
-        }
-        colorpuntero.addActionListener(new colorpuntero());
-
-        class colorparedes implements ActionListener {
-
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                caux = cparedes;
-
-                caux = Colorchooser();
-                if (caux != null) {
-                    cparedes = caux;
-                }
-
-                lab.setColorParedes(cparedes);
-                repaint();
-            }
-        }
-
-        colorparedes.addActionListener(new colorparedes());
-
-        barramenu.add(colores);
-        colores.add(colorfondo);
-        colores.add(colorpuntero);
-        colores.add(colorparedes);
-
         //se actualiza la ventana
         repaint();
 
@@ -440,4 +344,78 @@ public class Final extends JFrame {   //se genera un JFrame a partir de la clase
 
     }
 
+    private class GestorEventos implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            switch (ae.getActionCommand()) {
+
+                case "Selecionar laberinto":
+                    Filechooser();
+                    while (fichero == null) {
+                        JOptionPane.showMessageDialog(new JFrame(), "Por favor, seleccione un archivo .txt");
+
+                        Filechooser();
+                    }
+                    System.out.println("Se ha seleccionado el fichero: " + fichero);
+
+                    lab.setVisible(false);
+
+                    importlaberinto();
+
+                    break;
+
+                case "Reiniciar laberinto":
+
+                    lab.setVisible(false);
+                    
+                    System.out.println("Reinlab");
+                    importlaberinto();
+
+                    break;
+                case "Salir del laberinto":
+                    
+                    System.exit(0);
+
+                    break;
+
+                case "Seleccionar color de fondo":
+                    caux = cfondo;
+
+                    caux = Colorchooser();
+                    if (caux != null) {
+                        cfondo = caux;
+                    }
+
+                    lab.setColorFondo(cfondo);
+                    repaint();
+                    break;
+
+                case "Seleccionar color del puntero":
+                    caux = cpuntero;
+
+                    caux = Colorchooser();
+                    if (caux != null) {
+                        cpuntero = caux;
+                    }
+
+                    lab.setColorPuntero(cpuntero);
+                    repaint();
+                    break;
+
+                case "Seleccionar color de las paredes":
+                    caux = cparedes;
+
+                    caux = Colorchooser();
+                    if (caux != null) {
+                        cparedes = caux;
+                    }
+
+                    lab.setColorParedes(cparedes);
+                    repaint();
+                    break;
+
+            }
+        }
+    }
 }
