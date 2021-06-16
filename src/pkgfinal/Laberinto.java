@@ -190,7 +190,8 @@ public class Laberinto extends JPanel {
 
                     //se llama al dibujado de cada una de las casillas del laberinto
                     grid[i][j].paintComponent(g);
-
+                    
+                    
                 }
             }
         } catch (Exception e) {
