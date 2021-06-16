@@ -332,7 +332,7 @@ public class Final extends JFrame {   //se genera un JFrame a partir de la clase
             public void actionPerformed(ActionEvent ae) {
                 caux = cfondo;
 
-                caux = colorchooser();
+                caux = Colorchooser();
                 if (caux != null) {
                     cfondo = caux;
                 }
@@ -351,7 +351,7 @@ public class Final extends JFrame {   //se genera un JFrame a partir de la clase
 
                 caux = cpuntero;
 
-                caux = colorchooser();
+                caux = Colorchooser();
                 if (caux != null) {
                     cpuntero = caux;
                 }
@@ -369,7 +369,7 @@ public class Final extends JFrame {   //se genera un JFrame a partir de la clase
             public void actionPerformed(ActionEvent ae) {
                 caux = cparedes;
 
-                caux = colorchooser();
+                caux = Colorchooser();
                 if (caux != null) {
                     cparedes = caux;
                 }
@@ -433,7 +433,7 @@ public class Final extends JFrame {   //se genera un JFrame a partir de la clase
     }
 
     //Método encargado de abrir una ventana para que el usuario seleccione un Color y devolverlo 
-    private Color colorchooser() {
+    private Color Colorchooser() {
 
         //el color devuelto será igual al solor selecccionado por la ventade del JColorChooser
         //A la ventana se le asigna un titulo y un color por defecto

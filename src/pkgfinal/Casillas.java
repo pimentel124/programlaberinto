@@ -35,12 +35,7 @@ public class Casillas {
         this.Y = Y;
         cuadrado = c;
     }
-//        public Casillas(int[] bordes){
-//            if (bordes[0] == 1) norte = true;
-//            if (bordes[1] == 1) este = true;
-//            if (bordes[2] == 1) sur = true;
-//            if (bordes[3] == 1) oeste = true;
-//        }
+
 
     void setLibre() {
         ocupada = false;
@@ -72,11 +67,6 @@ public class Casillas {
         ocupada = true;
     }
 
-    /* public void setFicha(Puntero p) {
-        System.out.println("setficha");
-        ocupada = true;
-//        punt = p;
-    }*/
     public char[] getLimites() {
         return limites;
     }
