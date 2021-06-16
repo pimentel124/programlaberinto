@@ -161,14 +161,12 @@ public class Laberinto extends JPanel {
         //se establece como ocupada la casilla de inicio
         grid[filsalida][colsalida].setOcupada();
 
-
     }
 
     private void casillafinal() {
 
         //se establece como casilla de victora la casilla en la filnd, colend-1 (para que no salga del laberinto)
         grid[filend][colend - 1].setWin();
-
 
     }
 
