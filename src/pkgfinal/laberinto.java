@@ -12,56 +12,86 @@ import javax.swing.JPanel;
 
 
 public class laberinto extends JPanel {
+    
+    //se declara una variable int con atributo final que es el tamaño del lado
+    //de los cuadrados que componen las casillas
     private static final int dimensionlado = 40;
-    private int filas;
-    private int columnas;
-    private int filsalida; //no es la fila se la salida
-    private int colsalida;
-    private int filend;
-    private int colend;
-    private Color cFondo = Color.WHITE;
-    private Color cPuntero = Color.RED;
-    private Color cParedes = Color.BLACK;
-    private Random start;
+    
+    //se declaran variables int para contener:
+    private int filas;  //la cantidad de filas
+    private int columnas;  //la cantidad de columnas
+    
+    private int filsalida;  //la fila de la casilla salida
+    private int colsalida;  //la columna de la casilla de salida
    
-    public Casillas grid[][];
+    private int filend;    //la fila de la casilla de victoria
+    private int colend;    //la columna de la casilla de victoria
+    
+    private Color cFondo = Color.WHITE;  //el color de fondo y su color por defecto                                
+    private Color cPuntero = Color.RED;  //el color del puntero y su color por defecto
+    private Color cParedes = Color.BLACK;  //el color de las paredes y su color por defecto
+    
+    
+    private Random start;  //una variable de tipo random para generar el inicio aleatorio
+    
+   //un array de Casillas multidimensional que contendrá todas las casillas
+    public Casillas grid[][]; 
      
     
-    public laberinto(String fichero){
+    public laberinto(String fichero){ //constructor de la clase laberinto
+        
+        //a start se le asocia un nuevo Random
         this.start = new Random();        
+        
+        //se ejecuta el método lector a partir del String con el nombre del fichero pasado por parámetro
         lector(fichero);
        
     }
     
     
-    
+    //Método encargado de generar el laberinto y las Casillas a partir del fichero .txt
     private void lector(String fichero){
+        
+        //Se declara un String que actuará como buffer para leer línea a línea
         String linea = "";
-        int contX = 0;
-        int contY = 0;
+        //Se declaran dos int que serán los encargados de gestionar las COORDENADAS (en píxeles)
+        int coordX = 0;
+        int coordY = 0;
+        
+        //Se declarna un array de caracteres que será el encardado de guardar
+        //en qué lados hay muros y en cuales no 
         char[] limites = {'0','0','0','0'};
         
         try{
+            //se establece el enlace con el fichero y se le aplica el BufferedReader
+            //para poder leer de línea en línea y carácter a carácter
             FileReader fr = new FileReader(fichero);
             BufferedReader br = new BufferedReader(fr);
         
         try{
-         int tmp = 0;
+            // Se lee la primera línea del fichero y se convierte a int mediante el método aInt()
+            filas = aInt(linea = br.readLine());      // Se establece el número de filas
             
-                                                   // Se lee la primera línea del fichero y se convierte a int
-         filas = aInt(linea = br.readLine());      // Se establece el número de filas
-                                                   // Se lee la segunda línea del fichero y se convierte a int
-         columnas = aInt(linea = br.readLine());   // Se establece el número de columnas
+            // Se lee la segunda línea del fichero y se convierte a int  mediante el método aInt()                                     
+            columnas = aInt(linea = br.readLine());   // Se establece el número de columnas
+
+            //se genera el array de casillas con dimensiones filas x columnas
+            grid = new Casillas[filas][columnas];
+
+            //se declara un int para poder leer mediante el métood br.read()  
+            int tmp = 0;
          
-         grid = new Casillas[filas][columnas];
+         //se empieza un bucle para recorrer la parte de información sobre los muros que contiene el fichero
          
-         for (int i = 0; i<filas; i++){
+         for (int i = 0; i<filas; i++){ //encargado de recorrer las filas
              
-             contX = 0;
+             //cada vez que se salta de fila, se vuelve a poner a 0 la coordenada X
+             coordX = 0;
              
-             for (int j = 0; j<columnas; j++){
+             
+             for (int j = 0; j<columnas; j++){  //encargado de recorrer las columnas
                  
-                Rectangle2D.Float recprov= new Rectangle2D.Float(contX, contY, dimensionlado, dimensionlado);
+                Rectangle2D.Float recprov= new Rectangle2D.Float(coordX, coordY, dimensionlado, dimensionlado);
                 limites=new char[4];
                 
                 
@@ -74,12 +104,12 @@ public class laberinto extends JPanel {
                     
                    
                 }
-                grid[i][j]=new Casillas(recprov, limites, contX, contY);
-                contX = contX + dimensionlado;
+                grid[i][j]=new Casillas(recprov, limites, coordX, coordY);
+                coordX = coordX + dimensionlado;
              }
              
             br.readLine();
-            contY = contY + dimensionlado;
+            coordY = coordY + dimensionlado;
              
          }
          
@@ -147,10 +177,7 @@ public class laberinto extends JPanel {
             //g.setColor(Color.yellow);
         //g.fillRect((dimensionlado*colsalida)-dimensionlado, dimensionlado*filsalida, dimensionlado, dimensionlado);
             
-        
-        
-       
-            
+
         } catch (Exception e) {
         }
     }

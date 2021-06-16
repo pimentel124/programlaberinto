@@ -1,6 +1,7 @@
 package pkgfinal;
 
 import java.awt.Color;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -18,7 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
-public class Final extends JFrame {   //se puede quitar el public
+public class Final extends JFrame {   //se genera un JFrame a partir de la clase??
   
     //declaración de las variables filas y columnas 
     private int filas;  
@@ -39,21 +40,13 @@ public class Final extends JFrame {   //se puede quitar el public
     
     public void inicio(){   //Método inicial
         
-        importlaberinto();  //llamada al método encargado de generar el laberinto
+        //llamada al método encargado de generar el laberinto
+        importlaberinto(); 
         
-        atributosventana();
-        
-        
-        
-        
-        
-        
-        
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
-              
-        
-        
-        
+        //llamada al método encargado de gestional los componentes de la ventana
+        atributosventana();  
+
+      
     }
     
     
@@ -132,14 +125,21 @@ public class Final extends JFrame {   //se puede quitar el public
                             
                             //una vez se encuentra la casilla ocupada se intentará
                             //mover el puntero dependiendo de la tecla pulsada 
+                            
+                            //Tal y como funciona el switch en Java, en el caso de no haber break
+                            //en el caso actual, se avanza al siguiente caso. De esta manera,
+                            //independientemende de si el usuario ha pulsado W o la tecla de flecha hacia arriba
+                            //la acción será la misma
                             switch (ke.getKeyCode()) {
                                 case KeyEvent.VK_W:
-                                        
-                                    //Si se ha pulsado la tecla W, lo primero que se comprueba es que el puntero no se encuentre en la primera fila
-                                    //ya que en ese caso NUNCA podrá ir más hacia arriba puesto que las dimensiones del laberinto son limitadas
-                                    System.out.println("w");
+                                                                      
+                                case KeyEvent.VK_UP:
+                                    //Si se ha pulsado la tecla W o UP, lo primero que se comprueba 
+                                    //es que el puntero no se encuentre en la primera fila
+                                    //ya que en ese caso NUNCA podrá ir más hacia arriba
+                                    //puesto que las dimensiones del laberinto son limitadas                    
+                                    System.out.println("arriba");
                                     if (i != 0) {
-                                        
                                         //en el caso de que no se encuentre en la primera fila,
                                         //se comprueba si existe un muro en la parte superior de la casilla
                                         if (lab.grid[i][j].limites[0] == '0') {
@@ -147,116 +147,99 @@ public class Final extends JFrame {   //se puede quitar el public
                                             //en el caso de que no haya un muro en la parte superior,
                                             //se procede a ocupar la casilla immediatamente superior 
                                             //y a desocupar la casilla inicial
-                                            
-                                            lab.grid[i-1][j].setOcupada();   
+                                            lab.grid[i-1][j].setOcupada();  
                                             lab.grid[i][j].setLibre();             
-                                            
+//                                          
                                         }else{System.out.println("limite norte");}
                                     }else{System.out.println("limite norte");}
                                     
                                     //como se ha encontrado la casilla ocupada, se cambia el valor
                                     //de la variable booleana
                                     encontrada = true;
-                                    
-                                    break;
-                                    
-                                    
-                                case KeyEvent.VK_UP:
-                                                        
-                                    System.out.println("arriba");
-                                    if (i != 0) {
-                                        if (lab.grid[i][j].limites[0] == '0') {
-                                            lab.grid[i-1][j].setOcupada();  
-                                            lab.grid[i][j].setLibre();             
-//                                            Laberinto.setnFilas(i); 
-//                                            Laberinto.setnColumnas(j);
-                                             
-                                        }else{System.out.println("limite norte");}
-                                    }else{System.out.println("limite norte");}
-                                    encontrada = true;
                                     break;
  
                                 case KeyEvent.VK_D:
-                                    System.out.println("d");
-                                    if (j != columnas) {
-                                        if (lab.grid[i][j].limites[1] == '0') {
-                                            lab.grid[i][j+1].setOcupada();
-                                            lab.grid[i][j].setLibre();
-//                                            Laberinto.setnFilas(i);
-//                                            Laberinto.setnColumnas(j);
- 
-                                        }else{System.out.println("limite derecha");}
-                                    }else{System.out.println("limite derecha");}
-                                    encontrada = true;
-                                    break;
                                     
                                 case KeyEvent.VK_RIGHT:
                                     System.out.println("derecha");
+                                    
+                                    //Si se ha pulsado la tecla D o RIGHT, lo primero que se comprueba
+                                    //es que el puntero no se encuentre en la última columna
+                                    //ya que en ese caso NUNCA podrá ir más hacia la derecha 
+                                    //puesto que las dimensiones del laberinto son limitadas
                                     if (j != columnas) {
+                                        
+                                        
                                         if (lab.grid[i][j].limites[1] == '0') {
+                                            
+                                            //en el caso de que no haya un muro en la parte derecha,
+                                            //se procede a ocupar la casilla immediatamente a la derecha 
+                                            //y a desocupar la casilla inicial
                                             lab.grid[i][j+1].setOcupada();
                                             lab.grid[i][j].setLibre();
-//                                            Laberinto.setnFilas(i);
-//                                            Laberinto.setnColumnas(j);
+//                                          
  
                                         }else{System.out.println("limite derecha");}
                                     }else{System.out.println("limite derecha");}
+                                    
+                                    //como se ha encontrado la casilla ocupada, se cambia el valor
+                                    //de la variable booleana
                                     encontrada = true;
                                     break;
  
  
                                 case KeyEvent.VK_S:
-                                    System.out.println("s");
-                                    if (i != filas) {
-                                        if (lab.grid[i][j].limites[2] == '0') {
-                                            lab.grid[i+1][j].setOcupada();
-                                            lab.grid[i][j].setLibre();
-//                                            Laberinto.setnFilas(i);
-//                                            Laberinto.setnColumnas(j);
- 
-                                        }else{System.out.println("limite sur");}
-                                    }else{System.out.println("limite sur");}
-                                    encontrada = true;
-                                    break;
-                                    
+                                   
                                 case KeyEvent.VK_DOWN:
+                                    
+                                    
+                                    //Si se ha pulsado la tecla S o DOWN, lo primero que se comprueba
+                                    //es que el puntero no se encuentre en la última fila
+                                    //ya que en ese caso NUNCA podrá ir más hacia abajo 
+                                    //puesto que las dimensiones del laberinto son limitadas
                                     System.out.println("abajo");
                                     if (i != filas) {
+                                        
+                                        //en el caso de que no haya un muro en la parte inferior,
+                                        //se procede a ocupar la casilla immediatamente inferior 
+                                        //y a desocupar la casilla inicial
                                         if (lab.grid[i][j].limites[2] == '0') {
                                             lab.grid[i+1][j].setOcupada();
                                             lab.grid[i][j].setLibre();
-//                                            Laberinto.setnFilas(i);
-//                                            Laberinto.setnColumnas(j);
+//                                            
  
                                         }else{System.out.println("limite sur");}
                                     }else{System.out.println("limite sur");}
+                                    //como se ha encontrado la casilla ocupada, se cambia el valor
+                                    //de la variable booleana
                                     encontrada = true;
                                     break;
  
                                 case KeyEvent.VK_A:
-                                    System.out.println("A");
-                                    if (j != 0) {
-                                        if (lab.grid[i][j].limites[3] == '0') {
-                                            lab.grid[i][j-1].setOcupada();
-                                            lab.grid[i][j].setLibre();
-//                                            Laberinto.setnFilas(i);
-//                                            Laberinto.setnColumnas(j);
- 
-                                        }else{System.out.println("limite izquierda");}
-                                    }else{System.out.println("limite izquierda");}
-                                    encontrada = true;
-                                    break;
+                                
                                 case KeyEvent.VK_LEFT:
+                                    
+                                    //Si se ha pulsado la tecla S o LEFT, lo primero que se comprueba
+                                    //es que el puntero no se encuentre en la primera fila
+                                    //ya que en ese caso NUNCA podrá ir más hacia la izquierda 
+                                    //puesto que las dimensiones del laberinto son limitadas
                                     System.out.println("izquierda");
                                     if (j != 0) {
                                         if (lab.grid[i][j].limites[3] == '0') {
+                                            
+                                            
+                                            //en el caso de que no haya un muro en la parte izquierda,
+                                            //se procede a ocupar la casilla immediatamente a la izquierda 
+                                            //y a desocupar la casilla inicial
                                             lab.grid[i][j-1].setOcupada();
                                             lab.grid[i][j].setLibre();
-//                                            Laberinto.setnFilas(i);
-//                                            Laberinto.setnColumnas(j);
+//                                           
  
                                         }else{System.out.println("limite izquierda");}
                                     }else{System.out.println("limite izquierda");}
+                                    
+                                    //como se ha encontrado la casilla ocupada, se cambia el valor
+                                    //de la variable booleana
                                     encontrada = true;
                                     break;
  
@@ -265,12 +248,15 @@ public class Final extends JFrame {   //se puede quitar el public
  
                         }
                     }
+                    
+                    //en el caso de que se haya encontrado la casilla inicial 
+                    //se sale del bucle
                     if (encontrada) {
                         break;
                     }
                 }
  
-                
+                //se actualiza el laberinto
                 repaint();  
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -285,8 +271,7 @@ public class Final extends JFrame {   //se puede quitar el public
             public void keyTyped(KeyEvent ke) {}
         });
     
-    //fin.addKeyListener(ke);
-    
+     
     
     class selecclab implements ActionListener{
 
@@ -420,10 +405,11 @@ public class Final extends JFrame {   //se puede quitar el public
     
     
     
+    //se actualiza la ventana
     
     repaint();
     
-    
+    //se hace visible la ventana
     this.setVisible(true);
     }
     
@@ -440,7 +426,8 @@ public class Final extends JFrame {   //se puede quitar el public
     
     
     public static void main(String[] args) throws IOException{
-        new Final().inicio();
+        //se genera un constructor fuera del main para desaherse del atributo static
+        new Final().inicio();  
     }
     
     
@@ -448,38 +435,48 @@ public class Final extends JFrame {   //se puede quitar el public
     private String Filechooser(){    //metodo encargado de seleecionar un fichero de texto
         
         //Falta control de excepciones
-        
+        try {
+         
+            
         JFileChooser fc = new JFileChooser();    //se intanca la componente JFileChooser
         
-        File dir = new File(System.getProperty("user.dir"));     //Se obtiene el directorio del usuario
+        File dir = new File(System.getProperty("user.dir"));     //Se obtiene el directorio del usuario/programa
         fc.setCurrentDirectory(dir);                             //y se vincula al FileChooser para que a la hora se abrir la ventana
-                                                                 //Esta no sea la de documentos, sino la del usuaro (en la que esta el programa)
+                                                                 //esta no sea la de Documentos, sino la del usuaro (en la que esta el programa)
         
-        FileNameExtensionFilter txt = new FileNameExtensionFilter("Ficheros de texto", "txt");    //Un filtro que sólo se permite seleccionar al usario ficheros terminados en .txt
+//Se declara un filtro que sólo se permite seleccionar al usario ficheros terminados en .txt
+        FileNameExtensionFilter txt = new FileNameExtensionFilter("Ficheros de texto", "txt");    
         fc.setFileFilter(txt);                                   //Se añade el filto al FileChooser
         
         //se abre la ventana y se ejecuta la selección del fichero. 
         
         int funciona = fc.showOpenDialog(fc);
         fichero = null;
+        
+        //en el caso de que se haya seleccionado un fichero correctamente,
+        //la variable fichero pasa a valer el nombre del fichero seleccionado
         if (funciona == JFileChooser.APPROVE_OPTION){
             
             fichero = fc.getSelectedFile().getName();
         }
-        
-        
-        
-        //En caso de que la operación se haya realizado correctamente, el método devuelve el nombre del fichero como String
+        } catch (HeadlessException e) {
+        } catch (Exception e2){
+            
+        }
+
+        //el método devuelve el nombre del fichero como String
         
         return fichero;
     }
     
-    
+    //Método encargado de abrir una ventana para que el usuario seleccione un Color y devolverlo 
     private Color colorchooser(){
-
-        Color color=JColorChooser.showDialog(null, "SELECCIONE EL COLOR DE FONDO", Color.WHITE);
+        
+        //el color devuelto será igual al solor selecccionado por la ventade del JColorChooser
+        //A la ventana se le asigna un titulo y un color por defecto
+        return JColorChooser.showDialog(null, "SELECCIONE EL COLOR DE FONDO", Color.WHITE);
        
-        return color;
+        
     }
     
 
