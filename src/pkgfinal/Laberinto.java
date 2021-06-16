@@ -127,9 +127,7 @@ public class Laberinto extends JPanel {
                 //una vez ya se han leído las paredes, las dos úlitmas líneas indican en qué casilla está el final
                 //de esta manera, se leen y se convierten a int mediante el método aInt()
                 filend = aInt(linea = br.readLine());
-                System.out.println("filas " + filsalida);
                 colend = aInt(linea = br.readLine());
-                System.out.println("columnas " + colsalida);
 
                 //se cierran los enclaces del bufferedreader y el filereader
                 br.close();
@@ -163,7 +161,6 @@ public class Laberinto extends JPanel {
         //se establece como ocupada la casilla de inicio
         grid[filsalida][colsalida].setOcupada();
 
-        System.out.println("fila: " + filsalida + "   |    columna: " + colsalida);
 
     }
 
@@ -172,7 +169,6 @@ public class Laberinto extends JPanel {
         //se establece como casilla de victora la casilla en la filnd, colend-1 (para que no salga del laberinto)
         grid[filend][colend - 1].setWin();
 
-        System.out.println("Final en: " + filend + " y " + colend);
 
     }
 
