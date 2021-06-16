@@ -90,31 +90,51 @@ public class laberinto extends JPanel {
              
              
              for (int j = 0; j<columnas; j++){  //encargado de recorrer las columnas
-                 
+                
+                 //se genera un rectangulo que empieza en las coordenadas X e Y y tiene como lado la variable dimensionlado
                 Rectangle2D.Float recprov= new Rectangle2D.Float(coordX, coordY, dimensionlado, dimensionlado);
+                
+                //Se genera un nuevo array de chars de 4 dimensón 4 componentes
                 limites=new char[4];
                 
-                
-                for (int cont = 0; cont<4; cont++){
+                //un bucle encargado de recorrer grupos de 4 caracteres
+                for (int cont = 0; cont<4; cont++){ 
+                    
+                    //el método br.read devuelve el carácter como int, por ello empleamos
+                    //la variable tmp
                     
                     tmp = br.read();
+                    
+                    //creamos una variable traspaso de tipo char y convertimos tmp en char
                     char traspaso = (char) tmp;
                     
+                    //finalmente guardamos el char en la posición correspondiente dentro del array
                     limites[cont]=traspaso;
                     
                    
                 }
+                
+                //De esta manera, se va generando una casilla por cada grupo de 4 caracteres leídos
+                //y se pasa por parámetro al constructor el rectangulo de la casilla, el arrat con los
+                //chars que indican dónde hay paredes, y las coordenadas dónde empieza la casilla
                 grid[i][j]=new Casillas(recprov, limites, coordX, coordY);
+                
+                //se añade la dimensionlado a la coordenada X para avanzar al lugar donde 
+                //corresponde, la siguiente columna
                 coordX = coordX + dimensionlado;
              }
-             
+            //se avanza a la siguiente línea una vez se han leído todos los caracteres de la fila; 
             br.readLine();
+            
+            //se añade la dimensionlado a la coordenada X para avanzar al lugar donde 
+            //corresponde, la siguiente dila 
             coordY = coordY + dimensionlado;
              
          }
          
 
-         
+         //una vez ya se han leído las paredes, las dos úlitmas líneas indican en qué casilla está el final
+         //de esta manera, se leen y se convierten a int mediante el método aInt()
          filend = aInt(linea = br.readLine());
             System.out.println("filas "+filsalida);
          colend = aInt(linea = br.readLine());
