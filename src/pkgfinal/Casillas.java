@@ -7,10 +7,8 @@ import java.awt.geom.Rectangle2D;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-
-
 public class Casillas {
-    
+
     private int X;   //coordenada pixeles X
     private int Y;   //coordenada pixeles Y
     private boolean ocupada;   //
@@ -22,13 +20,15 @@ public class Casillas {
     private Color cfondo = Color.WHITE;
     private Color cpuntero = Color.RED;
     private Color cparedes = Color.BLACK;
-        public Casillas(){
-    
-            ocupada = false;
-            win = false;
-       
+
+    public Casillas() {
+
+        ocupada = false;
+        win = false;
+
     }
-        public Casillas(Rectangle2D.Float c, char[] lim, int X, int Y) {
+
+    public Casillas(Rectangle2D.Float c, char[] lim, int X, int Y) {
         ocupada = false;
         limites = lim;
         this.X = X;
@@ -41,149 +41,119 @@ public class Casillas {
 //            if (bordes[2] == 1) sur = true;
 //            if (bordes[3] == 1) oeste = true;
 //        }
-    
+
     void setLibre() {
-        ocupada=false;
+        ocupada = false;
     }
-    
-    public void setColorFondo(Color fondo){
+
+    public void setColorFondo(Color fondo) {
         this.cfondo = fondo;
-        
+
     }
-    
+
     public void setColorPuntero(Color puntero) {
         this.cpuntero = puntero;
     }
+
     public void setColorParedes(Color paredes) {
         this.cparedes = paredes;
     }
-    
-    
-    public void setWin(){
+
+    public void setWin() {
         win = true;
     }
-    
-    
+
     boolean info() {
         return ocupada;
-        
+
     }
-    
+
     public void setOcupada() {
-        ocupada=true;
+        ocupada = true;
     }
-    
-   
-    
-   /* public void setFicha(Puntero p) {
+
+    /* public void setFicha(Puntero p) {
         System.out.println("setficha");
         ocupada = true;
 //        punt = p;
     }*/
-    
     public char[] getLimites() {
         return limites;
     }
- 
-   public void paintComponent(Graphics g) throws Exception {
-       
-       //System.out.println(limites);
-       
-       Graphics2D aux = (Graphics2D) g;
-       Graphics2D puntero = (Graphics2D) g;
-       
-       aux.setColor(cfondo);
-       aux.fill(cuadrado);
-       
-       
-       
-       
-       
-       
-       
-       if(limites[0] == '1'){   //NORTE
-           Rectangle2D.Float pared= new Rectangle2D.Float(X,Y,laberinto.getDimension(),anchuralinea);
-           
-           aux.setColor(cparedes);
-           aux.fill(pared);
-           //System.out.println("norte");
-           
-       }
-       
-       if(limites[1] == '1'){  //ESTE //DERECHA
-           Rectangle2D.Float pared= new Rectangle2D.Float(X+laberinto.getDimension(),Y,anchuralinea,laberinto.getDimension()); 
-           aux.setColor(cparedes);
-           aux.fill(pared);
-           //System.out.println("derecha");
-           
-           
-       }
-       
-      
-       
-       if(limites[2] == '1'){   //SUR   
+
+    public void paintComponent(Graphics g) throws Exception {
+
+        //System.out.println(limites);
+        Graphics2D aux = (Graphics2D) g;
+        Graphics2D puntero = (Graphics2D) g;
+
+        aux.setColor(cfondo);
+        aux.fill(cuadrado);
+
+        if (limites[0] == '1') {   //NORTE
+            Rectangle2D.Float pared = new Rectangle2D.Float(X, Y, laberinto.getDimension(), anchuralinea);
+
+            aux.setColor(cparedes);
+            aux.fill(pared);
+            //System.out.println("norte");
+
+        }
+
+        if (limites[1] == '1') {  //ESTE //DERECHA
+            Rectangle2D.Float pared = new Rectangle2D.Float(X + laberinto.getDimension(), Y, anchuralinea, laberinto.getDimension());
+            aux.setColor(cparedes);
+            aux.fill(pared);
+            //System.out.println("derecha");
+
+        }
+
+        if (limites[2] == '1') {   //SUR   
 //           aux.setColor(Color.RED);
 //           aux.drawLine(X, Y+laberinto.getDimension(), X+laberinto.getDimension(), Y+laberinto.getDimension());
 //           aux.setColor(Color.BLACK);
 //           aux.drawLine(X, Y, X+laberinto.getDimension(), Y+laberinto.getDimension());
-           Rectangle2D.Float pared= new Rectangle2D.Float(X,Y+laberinto.getDimension(),laberinto.getDimension(),anchuralinea); 
-           aux.setColor(cparedes);
-           aux.fill(pared);
-           //System.out.println("sur");
-           
-       }
-       
-       
-       if(limites[3] == '1'){   //OESTE   //IZQUIERDA
-           Rectangle2D.Float pared= new Rectangle2D.Float(X,Y,anchuralinea,laberinto.getDimension()); 
-           aux.setColor(cparedes);
-           aux.fill(pared);
-           //System.out.println("izquierda");
-           
-       }
-       if (this.win) {
-           Rectangle2D.Float cwin = new Rectangle2D.Float(X+2,Y+2,laberinto.getDimension()-2,laberinto.getDimension()-2);
-           aux.setColor(Color.lightGray);
-           aux.fill(cwin);
+            Rectangle2D.Float pared = new Rectangle2D.Float(X, Y + laberinto.getDimension(), laberinto.getDimension(), anchuralinea);
+            aux.setColor(cparedes);
+            aux.fill(pared);
+            //System.out.println("sur");
+
         }
-       
-       if(ocupada){
-                       Puntero bola = new Puntero();
-                       
-                       bola.PaintComponent(g, X, Y, cpuntero);
-                       //punt.PaintComponent(g, X, Y, cpuntero);
-                       //puntero.setColor(cpuntero); 
-                       //puntero.fillOval(X+10, Y+10, 20, 20);
-                       
-                       
-                       if(win){
-                           
-                           
-                           System.out.println("Has ganado");
-                       
-                       
-                       JOptionPane.showMessageDialog(new JFrame(),"            ¡¡Has ganado!!");
-                       
-                       ocupada = false;
-                       
-                       System.exit(0);
 
-                       }
-                        
-                    }
-       
-       
-       
-       
-       
-       
-   }
-    
-    
-    
-    
-    
-    
-    
+        if (limites[3] == '1') {   //OESTE   //IZQUIERDA
+            Rectangle2D.Float pared = new Rectangle2D.Float(X, Y, anchuralinea, laberinto.getDimension());
+            aux.setColor(cparedes);
+            aux.fill(pared);
+            //System.out.println("izquierda");
+
+        }
+        if (this.win) {
+            Rectangle2D.Float cwin = new Rectangle2D.Float(X + 2, Y + 2, laberinto.getDimension() - 2, laberinto.getDimension() - 2);
+            aux.setColor(Color.lightGray);
+            aux.fill(cwin);
+        }
+
+        if (ocupada) {
+            Puntero bola = new Puntero();
+
+            bola.PaintComponent(g, X, Y, cpuntero);
+            //punt.PaintComponent(g, X, Y, cpuntero);
+            //puntero.setColor(cpuntero); 
+            //puntero.fillOval(X+10, Y+10, 20, 20);
+
+            if (win) {
+
+                System.out.println("Has ganado");
+
+                JOptionPane.showMessageDialog(new JFrame(), "            ¡¡Has ganado!!");
+
+                ocupada = false;
+
+                System.exit(0);
+
+            }
+
+        }
+
+    }
+
 }
-
