@@ -393,7 +393,7 @@ public class Final extends JFrame {   //se genera un JFrame a partir de la clase
         this.setVisible(true);
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         //se genera un constructor fuera del main para desaherse del atributo static
         new Final().inicio();
     }
