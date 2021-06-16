@@ -6,15 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import javafx.embed.swing.JFXPanel;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -24,24 +16,30 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
-import sun.audio.AudioStream;
 
 
 public class Final extends JFrame {   //se puede quitar el public
   
-          
-    private static int filas;
-    private static int columnas;
-    private String fichero = "maze1.txt";
-    private laberinto fin;
+    //declaración de las variables filas y columnas 
+    private int filas;  
+    private int columnas;
+    
+    //Declaración de un String con el nombre del fichero por defecto
+    private String fichero = "maze1.txt";  
+    
+    //Declaración de una varable de tipo laberinto
+    private laberinto lab;
+    
+    //Declaración de múltiples variables Color para poder personalizar la apariencia
+    //del laberinto
     private Color caux;
     private Color cfondo = Color.WHITE;
     private Color cpuntero = Color.RED;
     private Color cparedes = Color.BLACK;
-    final JFXPanel fxPanel = new JFXPanel();
     
-    public void inicio(){
-        importlaberinto();
+    public void inicio(){   //Método inicial
+        
+        importlaberinto();  //llamada al método encargado de generar el laberinto
         
         atributosventana();
         
@@ -60,191 +58,206 @@ public class Final extends JFrame {   //se puede quitar el public
     
     
     
-    private void importlaberinto(){
+    private void importlaberinto(){  //método encargado de generar el laberinto 
         
-        fin = new laberinto(fichero);
+        //se genera el laberinto llamando al constructor de la clase 
+        //y pasándole por pámetro un String con el nombre del fichero 
+        lab = new laberinto(fichero);
         
-        
-        filas = fin.getFilas();
-        columnas = fin.getColumnas();
-      //  casillas=fin.grid;
-        
-        this.add(fin);
+        //obtención de la cantidad de filas y columnas en el laberinto a partir
+        //de los métodos getFilas() y getColumnas()
+        filas = lab.getFilas();
+        columnas = lab.getColumnas();
+      
+        //se añade la variable lab de tipo laberindo (que es un JPanel) al JFame principal
+        this.add(lab);
     }
     
     private void atributosventana(){
     
-    this.setSize(columnas*laberinto.getDimension()+8,filas*laberinto.getDimension()+60);    
+    //se selecciona el tamaño de la ventana
+    this.setSize(columnas*lab.getDimension()+8,filas*lab.getDimension()+60); 
+    
+    //no se le permite al usuario cambiar las dimensions de la ventana
     this.setResizable(false);
+    //se establece el título de la ventana principal
     this.setTitle("Proyecto final laberinto");
+    
+    //al pulsar la cruz superior derecha se saldrá del programa
     setDefaultCloseOperation(EXIT_ON_CLOSE);    
     
+    //declaración de una barra de menú superior
     JMenuBar barramenu = new JMenuBar();
-    this.setJMenuBar(barramenu);
+    this.setJMenuBar(barramenu);  //se asigna la barra de menú al JFrame principal
+    
+    //declaración del primer apartado de la barra de menú y sus componentes 
+    //o apartados JMenuItem con sus correspondientes nombres
     JMenu menlaber = new JMenu("Laberintos");
     JMenuItem selecclab = new JMenuItem("Selecionar laberinto");
     JMenuItem reinlab = new JMenuItem("Reiniciar laberinto");
     JMenuItem exitlab = new JMenuItem("Salir del laberinto");
+    
+    //declaración del segundo apartado de la barra de menú y sus componentes 
+    //o apartados JMenuItem con sus correspondientes nombres
     JMenu colores = new JMenu("Visualización");
     JMenuItem colorfondo = new JMenuItem("Seleccionar color de fondo");
     JMenuItem colorpuntero = new JMenuItem("Seleccionar color del puntero");
     JMenuItem colorparedes = new JMenuItem("Seleccionar color de las paredes");
-    //
-    
-   // if(fin.grid[fin.getFilend()][fin.getColend()].info()){
-    
-    //}
     
     
-
-    
+    //implementación del KeyListener para gestionar el movimiento del puntero seún 
+    //la tecla pulsada
     addKeyListener(new KeyListener() {
             @Override
             public void keyPressed(KeyEvent ke) {
                 try {
-                  String bip = "cortado.mp3";
-                        Media hit = new Media(new File(bip).toURI().toString());
-                        MediaPlayer mediaPlayer = new MediaPlayer(hit);
-    
-                boolean cambio = false;
+                 
+                //declaración de un booleano que en caso de encontrar la casilla ocupada
+                //saldrá del bucle de recorrido evitando tener que recorrer el resto de casillas
+                
+                boolean encontrada = false;  
+                
+                
+                //se genera un bucle encargado de recorrer cada una de las 
+                //casillas de izquierda a derecha de arriba a abajo
                 for (int i = 0; i < filas; i++) {
                     
                     for (int j = 0; j < columnas; j++) {
-                        
-                        
-//                        
-                        if (fin.grid[i][j].info()) {
+                    
+                        //el bucle ignora todas las casillas hasta que encuentre la casilla ocupada
+                        if (lab.grid[i][j].info()) {
+                            
+                            
+                            
+                            
+                            //una vez se encuentra la casilla ocupada se intentará
+                            //mover el puntero dependiendo de la tecla pulsada 
                             switch (ke.getKeyCode()) {
                                 case KeyEvent.VK_W:
-                                                        
+                                        
+                                    //Si se ha pulsado la tecla W, lo primero que se comprueba es que el puntero no se encuentre en la primera fila
+                                    //ya que en ese caso NUNCA podrá ir más hacia arriba puesto que las dimensiones del laberinto son limitadas
                                     System.out.println("w");
                                     if (i != 0) {
-                                        if (fin.grid[i][j].limites[0] == '0') {
+                                        
+                                        //en el caso de que no se encuentre en la primera fila,
+                                        //se comprueba si existe un muro en la parte superior de la casilla
+                                        if (lab.grid[i][j].limites[0] == '0') {
                                             
-                                            fin.grid[i-1][j].setOcupada();   
-                                            fin.grid[i][j].setLibre();             
-//                                            Laberinto.setnFilas(i); 
-//                                            Laberinto.setnColumnas(j);
-                                             
-                                        }else{System.out.println("limite norte");
-                                        mediaPlayer.play();
-                                        }
-                                    }else{System.out.println("limite norte");
-                                    mediaPlayer.play();
-                                    }
-                                    cambio = true;
+                                            //en el caso de que no haya un muro en la parte superior,
+                                            //se procede a ocupar la casilla immediatamente superior 
+                                            //y a desocupar la casilla inicial
+                                            
+                                            lab.grid[i-1][j].setOcupada();   
+                                            lab.grid[i][j].setLibre();             
+                                            
+                                        }else{System.out.println("limite norte");}
+                                    }else{System.out.println("limite norte");}
+                                    
+                                    //como se ha encontrado la casilla ocupada, se cambia el valor
+                                    //de la variable booleana
+                                    encontrada = true;
+                                    
                                     break;
                                     
+                                    
                                 case KeyEvent.VK_UP:
-                                                        //KeyEvent.VK_UP 
+                                                        
                                     System.out.println("arriba");
                                     if (i != 0) {
-                                        if (fin.grid[i][j].limites[0] == '0') {
-                                            fin.grid[i-1][j].setOcupada();  
-                                            fin.grid[i][j].setLibre();             
+                                        if (lab.grid[i][j].limites[0] == '0') {
+                                            lab.grid[i-1][j].setOcupada();  
+                                            lab.grid[i][j].setLibre();             
 //                                            Laberinto.setnFilas(i); 
 //                                            Laberinto.setnColumnas(j);
                                              
-                                        }else{System.out.println("limite norte");
-                                        mediaPlayer.play();}
-                                    }else{System.out.println("limite norte");
-                                    mediaPlayer.play();}
-                                    cambio = true;
+                                        }else{System.out.println("limite norte");}
+                                    }else{System.out.println("limite norte");}
+                                    encontrada = true;
                                     break;
  
                                 case KeyEvent.VK_D:
                                     System.out.println("d");
                                     if (j != columnas) {
-                                        if (fin.grid[i][j].limites[1] == '0') {
-                                            fin.grid[i][j+1].setOcupada();
-                                            fin.grid[i][j].setLibre();
+                                        if (lab.grid[i][j].limites[1] == '0') {
+                                            lab.grid[i][j+1].setOcupada();
+                                            lab.grid[i][j].setLibre();
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
  
-                                        }else{System.out.println("limite derecha");
-                                        mediaPlayer.play();}
-                                    }else{System.out.println("limite derecha");
-                                    mediaPlayer.play();}
-                                    cambio = true;
+                                        }else{System.out.println("limite derecha");}
+                                    }else{System.out.println("limite derecha");}
+                                    encontrada = true;
                                     break;
                                     
                                 case KeyEvent.VK_RIGHT:
                                     System.out.println("derecha");
                                     if (j != columnas) {
-                                        if (fin.grid[i][j].limites[1] == '0') {
-                                            fin.grid[i][j+1].setOcupada();
-                                            fin.grid[i][j].setLibre();
+                                        if (lab.grid[i][j].limites[1] == '0') {
+                                            lab.grid[i][j+1].setOcupada();
+                                            lab.grid[i][j].setLibre();
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
  
-                                        }else{System.out.println("limite derecha");
-                                        mediaPlayer.play();}
+                                        }else{System.out.println("limite derecha");}
                                     }else{System.out.println("limite derecha");}
-                                    cambio = true;
+                                    encontrada = true;
                                     break;
  
  
                                 case KeyEvent.VK_S:
                                     System.out.println("s");
                                     if (i != filas) {
-                                        if (fin.grid[i][j].limites[2] == '0') {
-                                            fin.grid[i+1][j].setOcupada();
-                                            fin.grid[i][j].setLibre();
+                                        if (lab.grid[i][j].limites[2] == '0') {
+                                            lab.grid[i+1][j].setOcupada();
+                                            lab.grid[i][j].setLibre();
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
  
-                                        }else{System.out.println("limite sur");
-                                        mediaPlayer.play();}
-                                    }else{System.out.println("limite sur");
-                                    mediaPlayer.play();}
-                                    cambio = true;
+                                        }else{System.out.println("limite sur");}
+                                    }else{System.out.println("limite sur");}
+                                    encontrada = true;
                                     break;
                                     
                                 case KeyEvent.VK_DOWN:
                                     System.out.println("abajo");
                                     if (i != filas) {
-                                        if (fin.grid[i][j].limites[2] == '0') {
-                                            fin.grid[i+1][j].setOcupada();
-                                            fin.grid[i][j].setLibre();
+                                        if (lab.grid[i][j].limites[2] == '0') {
+                                            lab.grid[i+1][j].setOcupada();
+                                            lab.grid[i][j].setLibre();
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
  
-                                        }else{System.out.println("limite sur");
-                                        mediaPlayer.play();}
-                                    }else{System.out.println("limite sur");
-                                    mediaPlayer.play();}
-                                    cambio = true;
+                                        }else{System.out.println("limite sur");}
+                                    }else{System.out.println("limite sur");}
+                                    encontrada = true;
                                     break;
  
                                 case KeyEvent.VK_A:
                                     System.out.println("A");
                                     if (j != 0) {
-                                        if (fin.grid[i][j].limites[3] == '0') {
-                                            fin.grid[i][j-1].setOcupada();
-                                            fin.grid[i][j].setLibre();
+                                        if (lab.grid[i][j].limites[3] == '0') {
+                                            lab.grid[i][j-1].setOcupada();
+                                            lab.grid[i][j].setLibre();
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
  
-                                        }else{System.out.println("limite izquierda");
-                                        mediaPlayer.play();}
-                                    }else{System.out.println("limite izquierda");
-                                    mediaPlayer.play();}
-                                    cambio = true;
+                                        }else{System.out.println("limite izquierda");}
+                                    }else{System.out.println("limite izquierda");}
+                                    encontrada = true;
                                     break;
                                 case KeyEvent.VK_LEFT:
                                     System.out.println("izquierda");
                                     if (j != 0) {
-                                        if (fin.grid[i][j].limites[3] == '0') {
-                                            fin.grid[i][j-1].setOcupada();
-                                            fin.grid[i][j].setLibre();
+                                        if (lab.grid[i][j].limites[3] == '0') {
+                                            lab.grid[i][j-1].setOcupada();
+                                            lab.grid[i][j].setLibre();
 //                                            Laberinto.setnFilas(i);
 //                                            Laberinto.setnColumnas(j);
  
-                                        }else{System.out.println("limite izquierda");
-                                        mediaPlayer.play();}
-                                    }else{System.out.println("limite izquierda");
-                                    mediaPlayer.play();}
-                                    cambio = true;
+                                        }else{System.out.println("limite izquierda");}
+                                    }else{System.out.println("limite izquierda");}
+                                    encontrada = true;
                                     break;
  
                             }
@@ -252,7 +265,7 @@ public class Final extends JFrame {   //se puede quitar el public
  
                         }
                     }
-                    if (cambio) {
+                    if (encontrada) {
                         break;
                     }
                 }
@@ -288,7 +301,7 @@ public class Final extends JFrame {   //se puede quitar el public
                 }
                 System.out.println("Se ha seleccionado el fichero: "+fichero);
                 
-                fin.setVisible(false);
+                lab.setVisible(false);
                 
                 importlaberinto();
             }
@@ -303,7 +316,7 @@ public class Final extends JFrame {   //se puede quitar el public
             public void actionPerformed(ActionEvent ae) {
                
                
-               fin.setVisible(false);
+               lab.setVisible(false);
                //inicio();
                System.out.println("Reinlab");
                importlaberinto();
@@ -350,7 +363,7 @@ public class Final extends JFrame {   //se puede quitar el public
             
             //cfondo = colorchooser();
             
-            fin.setColorFondo(cfondo);
+            lab.setColorFondo(cfondo);
             repaint();
         }
     }
@@ -372,7 +385,7 @@ public class Final extends JFrame {   //se puede quitar el public
             
             //cpuntero = colorchooser();
             
-            fin.setColorPuntero(cpuntero);
+            lab.setColorPuntero(cpuntero);
             repaint();
         }
     }
@@ -392,7 +405,7 @@ public class Final extends JFrame {   //se puede quitar el public
             }
             
             //cparedes = colorchooser();
-            fin.setColorParedes(cparedes);
+            lab.setColorParedes(cparedes);
             repaint();
         }
     }
@@ -431,7 +444,6 @@ public class Final extends JFrame {   //se puede quitar el public
     }
     
     
-
     
     private String Filechooser(){    //metodo encargado de seleecionar un fichero de texto
         
