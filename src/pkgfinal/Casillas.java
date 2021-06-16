@@ -91,7 +91,7 @@ public class Casillas {
         aux.fill(cuadrado);
 
         if (limites[0] == '1') {   //NORTE
-            Rectangle2D.Float pared = new Rectangle2D.Float(X, Y, laberinto.getDimension(), anchuralinea);
+            Rectangle2D.Float pared = new Rectangle2D.Float(X, Y, Laberinto.getDimension(), anchuralinea);
 
             aux.setColor(cparedes);
             aux.fill(pared);
@@ -100,7 +100,7 @@ public class Casillas {
         }
 
         if (limites[1] == '1') {  //ESTE //DERECHA
-            Rectangle2D.Float pared = new Rectangle2D.Float(X + laberinto.getDimension(), Y, anchuralinea, laberinto.getDimension());
+            Rectangle2D.Float pared = new Rectangle2D.Float(X + Laberinto.getDimension(), Y, anchuralinea, Laberinto.getDimension());
             aux.setColor(cparedes);
             aux.fill(pared);
             //System.out.println("derecha");
@@ -112,7 +112,7 @@ public class Casillas {
 //           aux.drawLine(X, Y+laberinto.getDimension(), X+laberinto.getDimension(), Y+laberinto.getDimension());
 //           aux.setColor(Color.BLACK);
 //           aux.drawLine(X, Y, X+laberinto.getDimension(), Y+laberinto.getDimension());
-            Rectangle2D.Float pared = new Rectangle2D.Float(X, Y + laberinto.getDimension(), laberinto.getDimension(), anchuralinea);
+            Rectangle2D.Float pared = new Rectangle2D.Float(X, Y + Laberinto.getDimension(), Laberinto.getDimension(), anchuralinea);
             aux.setColor(cparedes);
             aux.fill(pared);
             //System.out.println("sur");
@@ -120,14 +120,14 @@ public class Casillas {
         }
 
         if (limites[3] == '1') {   //OESTE   //IZQUIERDA
-            Rectangle2D.Float pared = new Rectangle2D.Float(X, Y, anchuralinea, laberinto.getDimension());
+            Rectangle2D.Float pared = new Rectangle2D.Float(X, Y, anchuralinea, Laberinto.getDimension());
             aux.setColor(cparedes);
             aux.fill(pared);
             //System.out.println("izquierda");
 
         }
         if (this.win) {
-            Rectangle2D.Float cwin = new Rectangle2D.Float(X + 2, Y + 2, laberinto.getDimension() - 2, laberinto.getDimension() - 2);
+            Rectangle2D.Float cwin = new Rectangle2D.Float(X + 2, Y + 2, Laberinto.getDimension() - 2, Laberinto.getDimension() - 2);
             aux.setColor(Color.lightGray);
             aux.fill(cwin);
         }

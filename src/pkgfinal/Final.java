@@ -28,7 +28,7 @@ public class Final extends JFrame {   //se genera un JFrame a partir de la clase
     private String fichero = "maze1.txt";
 
     //Declaración de una varable de tipo laberinto
-    private laberinto lab;
+    private Laberinto lab;
 
     //Declaración de múltiples variables Color para poder personalizar la apariencia
     //del laberinto
@@ -51,7 +51,7 @@ public class Final extends JFrame {   //se genera un JFrame a partir de la clase
 
         //se genera el laberinto llamando al constructor de la clase 
         //y pasándole por pámetro un String con el nombre del fichero 
-        lab = new laberinto(fichero);
+        lab = new Laberinto(fichero);
 
         //obtención de la cantidad de filas y columnas en el laberinto a partir
         //de los métodos getFilas() y getColumnas()
