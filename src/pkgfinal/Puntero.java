@@ -1,27 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkgfinal;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-/**
- *
- * @author alvar
- */
-public class Puntero {
+
+public class Puntero {  //clase encargada de pintar el puntero
     
-   
-    public void PaintComponent(Graphics g, float x, float y, Color cpuntero) {
+   //único método de la clase, y encargado de pintar el puntero a partir de los datos
+    //Pasador por parámetro
+    public void PaintComponent(Graphics g, int x, int y, Color cpuntero) {
         
-        
+       //Se genera un Graphics2D a partir del Graphics pasado por parámetro
        Graphics2D puntero = (Graphics2D) g;
         
+       
+        //Se establece el clor del puntero
         puntero.setColor(cpuntero); 
-        puntero.fillOval((int)x+10, (int)y+10, 20, 20);
+        
+        //y se pinta un óvalo en las coordenadas (x+10 , y+10) y de dimensiones 20 x 20
+        //para que sea un círculo y esté centrado
+        puntero.fillOval(x+10, y+10, 20, 20);
         
       
     }
